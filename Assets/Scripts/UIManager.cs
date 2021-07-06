@@ -11,29 +11,16 @@ public class UIManager : MonoBehaviour
     public GameObject SettingsMenu;
     public GameObject PauseMenu;
 
-    public string Level;
-    public int MoveCount;
-    public int MinMoveRequired;
+    public Canvas HUD;
 
-    public TMP_Text LevelText;
-    public TMP_Text MoveCountText;
+    public TMP_Text ScoreText;
+    public Image[] Hearts;
+    public Image[] StageImages;
+    public Image ProgressBar;
 
     private void Start()
     {
-        LevelText.text = "Level " + Level;
-        MoveCountText.text = $"Move Count: {0}/{MinMoveRequired}";
-    }
-
-    public void UpdateLevel(string name)
-    {
-        Level = name;
-        LevelText.text = "Level " + Level;
-    }
-    public void UpdateMove(int count = -1)
-    {
-        if (count == -1) MoveCount++;
-        else  MoveCount = count;
-        MoveCountText.text = $"Move Count: {MoveCount}/{MinMoveRequired}";
+        ScoreText.SetText(GameManager_.Instance.Score.ToString("000,000,000"));
     }
 
     public void ToggleMenuCanvas(bool val)
@@ -54,5 +41,37 @@ public class UIManager : MonoBehaviour
     public void TogglePauseMenu(bool val)
     {
         PauseMenu.SetActive(val);
+    }
+
+
+    public void UpdateScore(int score)
+    {
+        ScoreText.SetText(score.ToString("000,000,000"));
+    }
+    // progress bar is split in 4 parts, equally 25% each, passing each part will unlock new prey
+    public void UpdateProgress(float currentProgress, float baseProgress, float maxProgress, int stage)
+    {
+        ProgressBar.fillAmount = 0.33f * stage + 0.33f * (currentProgress - baseProgress) / maxProgress;
+        for (int i = 0; i <= stage; ++i)
+        {
+            StageImages[i].color = new Color(1, 1, 1, 1);
+        }
+        for (int i = stage+1; i < StageImages.Length; ++i)
+        {
+            StageImages[i].color = new Color(0, 0, 0, 1);
+        }
+            
+    }
+
+    public void UpdateLives(int live)
+    {
+        for (int i = 0; i < live; ++i)
+        {
+            Hearts[i].color = new Color(1, 1, 1, 1);
+        }
+        for (int i = live; i < Hearts.Length; ++i)
+        {
+            Hearts[i].color = new Color(1, 1, 1, 0);
+        }
     }
 }

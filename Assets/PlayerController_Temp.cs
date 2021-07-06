@@ -16,7 +16,8 @@ public class PlayerController_Temp : MonoBehaviour
     public GameObject cursor;
 
     public Vector2 StartPosition;
-
+    public ParticleSystem GrowParticle;
+    public GameObject Point;
     
 
     public int DashMultiplier = 2;
@@ -91,13 +92,35 @@ public class PlayerController_Temp : MonoBehaviour
             {
                 eb.gameObject.SetActive(false);
                 gameManager.AddProgress(eb.value);
+                GameManager_.Instance.ParticlePlayer.PlayEffect("BloodSplatter", transform.position);
+                if (gameManager.Stage == eb.Stage) CinemachineShake.Instance.ShakeCamera(3f, .2f);
+                SpawnFloatingPoint(eb.scoreValue);
+                gameManager.AddScore(eb.scoreValue);
             } else
             {
                 // TODO: reset stage
                 transform.position = StartPosition;
+                gameManager.AddLive(-1);
                 gameManager.ResetProgress();
+                GrowParticle.Play();
+                GameManager_.Instance.ParticlePlayer.PlayEffect("BloodSplatter", collision.transform.position);
             }
+            
+            GameManager_.Instance.SoundPlayer.PlayClip("Eat", 0.5f);
         }
+        if (collision.gameObject.CompareTag("Live"))
+        {
+            Destroy(collision.gameObject);
+            gameManager.AddLive(1);
+        }
+    }
+
+    private void SpawnFloatingPoint(int score)
+    {
+        GameObject point = Instantiate(Point, transform.position, Quaternion.identity);
+        point.GetComponentInChildren<TextMesh>().text = score.ToString();
+        point.GetComponentInChildren<MeshRenderer>().sortingOrder = 10;
+        Destroy(point, 2f);
     }
 
 }

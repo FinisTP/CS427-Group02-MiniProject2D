@@ -20,6 +20,9 @@ public class EnemyBehavior : MonoBehaviour
     public float DetectionRadius = 5f;
     public float toNextWaypointDistance = 1.5f;
     public float value = 1f;
+    public int scoreValue = 200;
+
+    private bool isVisible = false;
 
     private Path path;
     private int currentWaypoint = 0;
@@ -136,16 +139,29 @@ public class EnemyBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!isVisible) return;
         if (collision.CompareTag("Enemy"))
         {
             if (collision.GetComponent<EnemyBehavior>().Stage < this.Stage)
             {
+                GameManager_.Instance.ParticlePlayer.PlayEffect("BloodSplatter", collision.transform.position);
+                //GameManager_.Instance.SoundPlayer.PlayClip("Eat", 0.5f);
                 collision.gameObject.SetActive(false);
             } else if (collision.GetComponent<EnemyBehavior>().Stage > this.Stage)
             {
                 gameObject.SetActive(false);
             }
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        isVisible = false;
+    }
+
+    private void OnBecameVisible()
+    {
+        isVisible = true;
     }
 
 }
