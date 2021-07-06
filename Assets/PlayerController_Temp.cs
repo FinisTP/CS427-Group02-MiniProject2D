@@ -10,44 +10,54 @@ public class PlayerController_Temp : MonoBehaviour
     private Vector2 _mousePos;
     private bool isFacingRight;
     private GameManager_ gameManager;
-    
-    
+    private Vector2 _mousePosOnScreen;
+    public GameObject cursor;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         gameManager = GameManager_.Instance;
+        Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
     }
 
     private void Update()
     {
         if (!GameManager_.Instance.IsRunningGame) return;
-        _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        // Consider using add force
-        Vector2 dir = _mousePos - (Vector2)transform.position;
-        if (dir.magnitude >= 0.5f)
-        {
-            float speed = Mathf.Clamp(dir.magnitude * 5, 0, MaxSpeed);
+        //if (Vector2.Distance(_mousePosOnScreen, Input.mousePosition) >= 0.05f)
+        //{
+            //_rb.drag = 0f;
+            _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        cursor.transform.position = _mousePos;
+            // Consider using add force
+            Vector2 dir = _mousePos - (Vector2)transform.position;
+            if (dir.magnitude >= 0.5f)
+            {
+                float speed = Mathf.Clamp(dir.magnitude * 5, 0, MaxSpeed);
 
-            _rb.velocity = dir.normalized * speed;
-        }
-        else
-        {
-            _rb.velocity = Vector2.zero;
-        }
-        _anim.SetFloat("Speed", dir.magnitude);
-        if (_rb.velocity.x > 0)
-        {
-            isFacingRight = true;
-            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        }
-        else if (_rb.velocity.x < 0)
-        {
-            isFacingRight = false;
-            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        }
+                _rb.velocity = dir.normalized * speed;
+            }
+            else
+            {
+                _rb.velocity = Vector2.zero;
+            }
+            _anim.SetFloat("Speed", dir.magnitude);
+            if (_rb.velocity.x > 0)
+            {
+                isFacingRight = true;
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+            else if (_rb.velocity.x < 0)
+            {
+                isFacingRight = false;
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+        //}
+        //else _rb.drag = 2f;
+        
+
+        _mousePosOnScreen = Input.mousePosition;
 
     }
 

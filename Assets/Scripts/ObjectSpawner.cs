@@ -38,6 +38,7 @@ public class ObjectSpawner : MonoBehaviour
 
     public float SpawnDelay = 5f;
     private float _timePassed = 0f;
+    public Transform Holder;
 
     public EnemyStatistics[] EnemyPrefabs;
     private Dictionary<string, List<GameObject>> enemyPool = new Dictionary<string, List<GameObject>>();
@@ -52,6 +53,7 @@ public class ObjectSpawner : MonoBehaviour
             {
                 spawned = Instantiate(EnemyPrefabs[i].EnemyObject);
                 spawned.SetActive(false);
+                spawned.transform.parent = Holder;
                 enemyPool[EnemyPrefabs[i].name].Add(spawned);
             }
             EnemyPrefabs[i].CurrentCount = 0;
@@ -77,8 +79,23 @@ public class ObjectSpawner : MonoBehaviour
 
     }
 
+    public void UpdateStatistics()
+    {
+        for (int i = 0; i < EnemyPrefabs.Length; ++i)
+        {
+            int currentCount = 0;
+            EnemyStatistics stat = EnemyPrefabs[i];
+            for (int j = 0; j < enemyPool[stat.name].Count; ++j)
+            {
+                if (enemyPool[stat.name][j].activeInHierarchy) currentCount++;
+            }
+            stat.CurrentCount = currentCount;
+        }
+    }
+
     public GameObject SpawnEnemy(string enemyName, Vector2 spawnPos)
     {
+
         if (enemyPool.ContainsKey(enemyName))
         {
             EnemyStatistics es = GetEnemyFromString(enemyName);
@@ -88,7 +105,7 @@ public class ObjectSpawner : MonoBehaviour
                 {
                     enemyPool[enemyName][i].SetActive(true);
                     enemyPool[enemyName][i].transform.position = spawnPos;
-                    es.CurrentCount++;
+                    // es.CurrentCount++;
                     return enemyPool[enemyName][i];
                 }
             }
@@ -98,6 +115,7 @@ public class ObjectSpawner : MonoBehaviour
 
     public void SpawnWave()
     {
+        UpdateStatistics();
         for (int i = 0; i < EnemyPrefabs.Length; ++i)
         {
             EnemyStatistics es = EnemyPrefabs[i];
