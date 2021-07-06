@@ -5,8 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class SpawnProgression
 {
-    public int Stage;
-    public int SpawnCount;
+    public int MinSpawnCount;
+    public int MaxSpawnCount;
 }
 
 [System.Serializable]
@@ -37,7 +37,6 @@ public class ObjectSpawner : MonoBehaviour
     }
 
     public float SpawnDelay = 5f;
-    private float _timePassed = 0f;
     public Transform Holder;
 
     public EnemyStatistics[] EnemyPrefabs;
@@ -119,9 +118,10 @@ public class ObjectSpawner : MonoBehaviour
         for (int i = 0; i < EnemyPrefabs.Length; ++i)
         {
             EnemyStatistics es = EnemyPrefabs[i];
-            if (es.CurrentCount < es.Progress[GameManager_.Instance.Stage - 1].SpawnCount)
+            int countToSpawn = Random.Range(es.Progress[GameManager_.Instance.Stage].MinSpawnCount, es.Progress[GameManager_.Instance.Stage].MaxSpawnCount);
+            if (es.CurrentCount <= countToSpawn)
             {
-                for (int j = 0; j < es.Progress[GameManager_.Instance.Stage - 1].SpawnCount - es.CurrentCount; ++j)
+                for (int j = 0; j < countToSpawn - es.CurrentCount; ++j)
                 {
                     int r = Random.Range(0, 4);
                     Vector2 spawnPos = Vector2.zero;
@@ -148,5 +148,4 @@ public class ObjectSpawner : MonoBehaviour
             
         }
     }
-
 }
