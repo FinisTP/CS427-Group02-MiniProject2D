@@ -18,8 +18,9 @@ public class PlayerController_Temp : MonoBehaviour
     public Vector2 StartPosition;
     public ParticleSystem GrowParticle;
     public GameObject Point;
-    
+    public Texture2D CursorSprite;
 
+    private bool isInvincible = false;
     public int DashMultiplier = 2;
 
     private void Start()
@@ -28,7 +29,8 @@ public class PlayerController_Temp : MonoBehaviour
         _anim = GetComponent<Animator>();
         gameManager = GameManager_.Instance;
         Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
+        Cursor.SetCursor(CursorSprite, new Vector2(0, 0), CursorMode.Auto);
+        //Cursor.visible = false;
         StartPosition = transform.position;
     }
 
@@ -39,7 +41,7 @@ public class PlayerController_Temp : MonoBehaviour
         //{
             //_rb.drag = 0f;
         _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        cursor.transform.position = _mousePos;
+        //cursor.transform.position = _mousePos;
             // Consider using add force
         Vector2 dir = _mousePos - (Vector2)transform.position;
         if (dir.magnitude >= 0.5f)
@@ -96,7 +98,7 @@ public class PlayerController_Temp : MonoBehaviour
                 if (gameManager.Stage == eb.Stage) CinemachineShake.Instance.ShakeCamera(3f, .2f);
                 SpawnFloatingPoint(eb.scoreValue);
                 gameManager.AddScore(eb.scoreValue);
-            } else
+            } else if (!isInvincible)
             {
                 // TODO: reset stage
                 transform.position = StartPosition;
@@ -104,6 +106,7 @@ public class PlayerController_Temp : MonoBehaviour
                 gameManager.ResetProgress();
                 GrowParticle.Play();
                 GameManager_.Instance.ParticlePlayer.PlayEffect("BloodSplatter", collision.transform.position);
+                StartCoroutine(DamagedCooldown());
             }
             
             GameManager_.Instance.SoundPlayer.PlayClip("Eat", 0.5f);
@@ -121,6 +124,13 @@ public class PlayerController_Temp : MonoBehaviour
         point.GetComponentInChildren<TextMesh>().text = "+" + score.ToString();
         point.GetComponentInChildren<MeshRenderer>().sortingOrder = 10;
         Destroy(point, 2f);
+    }
+
+    IEnumerator DamagedCooldown()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(3f);
+        isInvincible = false;
     }
 
 }
