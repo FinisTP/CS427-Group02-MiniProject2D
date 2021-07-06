@@ -118,7 +118,7 @@ public class PlayerController_Temp : MonoBehaviour
     private void SpawnFloatingPoint(int score)
     {
         GameObject point = Instantiate(Point, transform.position, Quaternion.identity);
-        point.GetComponentInChildren<TextMesh>().text = score.ToString();
+        point.GetComponentInChildren<TextMesh>().text = "+" + score.ToString();
         point.GetComponentInChildren<MeshRenderer>().sortingOrder = 10;
         Destroy(point, 2f);
     }

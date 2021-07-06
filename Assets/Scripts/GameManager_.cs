@@ -41,9 +41,16 @@ public class GameManager_ : MonoBehaviour
     public float MaxZoom = 10f;
     public float ZoomSpeed = 10f;
 
+
     private float currentZoom = 4.5f;
     private float maxProgress = 0f;
     public int MaxLive = 7;
+
+    public float boost = 0;
+    public float boostUnit = 15;
+    public float boostLimit = 100;
+    private bool boosting = false;
+
 
     private static GameManager_ instance = null;
     public static GameManager_ Instance
@@ -85,7 +92,15 @@ public class GameManager_ : MonoBehaviour
     private void Update()
     {
         CameraZoom();
-        
+
+        if (!boosting)
+        {
+            boost += boostUnit * Time.deltaTime;
+            if (boost >= boostLimit)
+            {
+                boost = boostLimit;
+            }
+        }
     }
 
     public void CameraZoom()
@@ -114,6 +129,26 @@ public class GameManager_ : MonoBehaviour
             Destroy(gameObject);
         }
         
+    }
+
+    public void ContinueChargingBoost()
+    {
+        boosting = false;
+    }
+
+    public void StopChargingBoost()
+    {
+        boosting = true;
+    }
+    public bool UseBoost(float used)
+    {
+        if (boost > 0)
+        {
+            boost -= used;
+            if (boost < 0) boost = 0;
+            return true;
+        }
+        return false;
     }
 
     public void AddProgress(float prog)

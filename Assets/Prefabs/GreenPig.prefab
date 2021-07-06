@@ -124,6 +124,7 @@ MonoBehaviour:
   DetectionRadius: 5
   toNextWaypointDistance: 1.5
   value: 1
+  scoreValue: 350
 --- !u!61 &6031759440188001561
 BoxCollider2D:
   m_ObjectHideFlags: 0
