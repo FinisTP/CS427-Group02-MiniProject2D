@@ -22867,6 +22867,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  boostFactor: 2
+  boostUnit: 25
 --- !u!58 &1958530052
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -23045,11 +23047,14 @@ MonoBehaviour:
   - RequiredFood: 20
     Scale: 1.4
   IsRunningGame: 1
-  Stage: 1
+  Stage: 0
   currentProgress: 0
   MinZoom: 4.5
   MaxZoom: 10
   ZoomSpeed: 10
+  boost: 0
+  boostUnit: 15
+  boostLimit: 100
 --- !u!114 &2041755435
 MonoBehaviour:
   m_ObjectHideFlags: 0
