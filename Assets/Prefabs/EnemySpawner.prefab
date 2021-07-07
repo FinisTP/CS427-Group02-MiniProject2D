@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5269891914820008500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5269891914820008507}
+  - component: {fileID: 5269891914820008506}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5269891914820008507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269891914820008500}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5269891914820008506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269891914820008500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9cb74c49a6f35747a5911b2850b498b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnDelay: 5
+  EnemyPrefabs:
+  - EnemyObject: {fileID: 3870972302344558549, guid: 5009ba9d5440c8446a552d037a7a15e1, type: 3}
+    name: Chicken
+    MaxCount: 50
+    Progress:
+    - MinSpawnCount: 20
+      MaxSpawnCount: 40
+    - MinSpawnCount: 10
+      MaxSpawnCount: 20
+    - MinSpawnCount: 10
+      MaxSpawnCount: 20
+    - MinSpawnCount: 0
+      MaxSpawnCount: 0
+    CurrentCount: 0
+  - EnemyObject: {fileID: 6031759440188001574, guid: 0eaf373e68dba0a4d870e828c2b9bafd, type: 3}
+    name: GreenPig
+    MaxCount: 50
+    Progress:
+    - MinSpawnCount: 5
+      MaxSpawnCount: 10
+    - MinSpawnCount: 20
+      MaxSpawnCount: 40
+    - MinSpawnCount: 20
+      MaxSpawnCount: 40
+    - MinSpawnCount: 0
+      MaxSpawnCount: 0
+    CurrentCount: 0
+  - EnemyObject: {fileID: 9133583195659667304, guid: 3171808464cf79f4197367b016b142bb, type: 3}
+    name: RedPig
+    MaxCount: 50
+    Progress:
+    - MinSpawnCount: 0
+      MaxSpawnCount: 5
+    - MinSpawnCount: 5
+      MaxSpawnCount: 10
+    - MinSpawnCount: 10
+      MaxSpawnCount: 20
+    - MinSpawnCount: 0
+      MaxSpawnCount: 0
+    CurrentCount: 0
+  - EnemyObject: {fileID: 4195674428016782151, guid: 707096e5b9f92f54683e04488b47dd27, type: 3}
+    name: FatBird
+    MaxCount: 5
+    Progress:
+    - MinSpawnCount: 0
+      MaxSpawnCount: 0
+    - MinSpawnCount: 0
+      MaxSpawnCount: 0
+    - MinSpawnCount: 1
+      MaxSpawnCount: 5
+    - MinSpawnCount: 0
+      MaxSpawnCount: 0
+    CurrentCount: 0
