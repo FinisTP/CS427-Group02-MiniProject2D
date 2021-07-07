@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9133583195659667287}
   - component: {fileID: 9133583195659667282}
   - component: {fileID: 9133583195659667283}
+  - component: {fileID: 134879488}
   m_Layer: 0
   m_Name: RedPig
   m_TagString: Enemy
@@ -200,3 +201,18 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &134879488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9133583195659667304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 163487d527ecc22459a99a95321e071a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: -0.3}
+  shadowMaterial: {fileID: 2100000, guid: 688a523796e92ad42bb2c98c030bb03f, type: 2}
+  shadowColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0}
