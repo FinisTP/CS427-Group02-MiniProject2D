@@ -205,7 +205,7 @@ public class GameManager_ : MonoBehaviour
     {
         if (Stage + 1 < Progress.Length)
         {
-            Player.transform.localScale = new Vector3(1, 1, 1) * Progress[++Stage].Scale;
+            Player.transform.localScale = new Vector3(Mathf.Sign(Player.transform.localScale.x) * 1, 1, 1) * Progress[++Stage].Scale;
             currentProgress = Progress[Stage-1].RequiredFood;
             Player.GetComponent<PlayerController_Temp>().GrowParticle.Play();
             // ParticlePlayer.PlayEffect("Grow", Player.transform.position);

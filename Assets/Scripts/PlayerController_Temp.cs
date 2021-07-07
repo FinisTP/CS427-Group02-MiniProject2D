@@ -49,17 +49,14 @@ public class PlayerController_Temp : MonoBehaviour
         // Keyboard
         if (!Application.isMobilePlatform && _mousePosOnScreen == (Vector2) Input.mousePosition)
         {
-            if (false)
-            {
-                moveX = Input.GetAxisRaw("Horizontal");
-                moveY = Input.GetAxisRaw("Vertical");
-                boosting = Input.GetKey(KeyCode.Space);
-            }
-            
+            moveX = Input.GetAxisRaw("Horizontal");
+            moveY = Input.GetAxisRaw("Vertical");
+            boosting = Input.GetKey(KeyCode.Space);
             if ((moveX < -0.01f && isFacingRight) || (moveX > 0.01f && !isFacingRight))
             {
                 FlipSprite();
             }
+            return;
         }
         else if (Application.isMobilePlatform)
         {

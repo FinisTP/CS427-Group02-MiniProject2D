@@ -21,23 +21,8 @@ public class EnemyStatistics
 
 public class ObjectSpawner : MonoBehaviour
 {
-    public static ObjectSpawner Instance {
-        get
-        {
-            return _instance;
-        }
-    }
-    private static ObjectSpawner _instance = null;
-
-    private void Awake()
-    {
-        if (_instance == null)
-            _instance = this;
-        else Destroy(gameObject);
-    }
-
     public float SpawnDelay = 5f;
-    public Transform Holder;
+    private Transform Holder;
 
     public EnemyStatistics[] EnemyPrefabs;
     private Dictionary<string, List<GameObject>> enemyPool = new Dictionary<string, List<GameObject>>();
@@ -58,6 +43,7 @@ public class ObjectSpawner : MonoBehaviour
             EnemyPrefabs[i].CurrentCount = 0;
             
         }
+        Holder = transform;
         InvokeRepeating("SpawnWave", 2f, SpawnDelay);
     }
 
@@ -71,11 +57,6 @@ public class ObjectSpawner : MonoBehaviour
             }
         }
         return null;
-    }
-
-    private void Update()
-    {
-
     }
 
     public void UpdateStatistics()

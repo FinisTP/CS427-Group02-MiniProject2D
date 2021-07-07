@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
 
     public Image EnergyBar;
     public Canvas HUD;
+    public Joystick JoyStick;
 
     public TMP_Text ScoreText;
     public Image[] Hearts;
@@ -25,11 +26,20 @@ public class UIManager : MonoBehaviour
     {
         ScoreText.SetText(GameManager_.Instance.Score.ToString("000,000,000"));
         lerpSpeed = 3f * Time.deltaTime;
+        if (!Application.isMobilePlatform)
+        {
+            JoyStick.gameObject.SetActive(false);
+        }
     }
 
     public void ToggleMenuCanvas(bool val)
     {
         MenuCanvas.gameObject.SetActive(val);
+    }
+
+    public void ToggleHUD(bool val)
+    {
+        HUD.gameObject.SetActive(val);
     }
 
     public void ToggleMainMenu(bool val)
@@ -54,7 +64,7 @@ public class UIManager : MonoBehaviour
     // progress bar is split in 4 parts, equally 25% each, passing each part will unlock new prey
     public void UpdateProgress(float currentProgress, float baseProgress, float maxProgress, int stage)
     {
-        ProgressBar.fillAmount = 0.33f * stage + 0.33f * (currentProgress - baseProgress) / maxProgress;
+        ProgressBar.fillAmount = (1/3f) * stage + (1/3f) * (currentProgress - baseProgress) / (maxProgress - baseProgress);
         for (int i = 0; i <= stage; ++i)
         {
             StageImages[i].color = new Color(1, 1, 1, 1);
@@ -63,6 +73,7 @@ public class UIManager : MonoBehaviour
         {
             StageImages[i].color = new Color(0, 0, 0, 1);
         }
+        // print($"Current: {currentProgress},Base: {baseProgress}, Max: {maxProgress}");
             
     }
 
