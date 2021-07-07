@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerController_Temp : MonoBehaviour
 {
     public float MaxSpeed;
-    private Rigidbody2D _rb;
+    private Rigidbody2D rb;
     private Animator _anim;
     private Vector2 _mousePos;
     private bool isFacingRight;
@@ -20,12 +20,21 @@ public class PlayerController_Temp : MonoBehaviour
     public GameObject Point;
     public Texture2D CursorSprite;
 
+    public Joystick joystick;
+
     private bool isInvincible = false;
     public int DashMultiplier = 2;
 
+    [SerializeField] private float moveSpeed = 5;
+    [SerializeField] private float boostFactor = 2;
+    [SerializeField] private float boostUnit = 25;
+
+    private float moveX = 0, moveY = 0;
+    private bool boosting = false;
+
     private void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         gameManager = GameManager_.Instance;
         Cursor.lockState = CursorLockMode.Confined;
@@ -37,52 +46,82 @@ public class PlayerController_Temp : MonoBehaviour
     private void Update()
     {
         if (!GameManager_.Instance.IsRunningGame) return;
-        //if (Vector2.Distance(_mousePosOnScreen, Input.mousePosition) >= 0.05f)
-        //{
-            //_rb.drag = 0f;
+        // Keyboard
+        if (!Application.isMobilePlatform && _mousePosOnScreen == (Vector2) Input.mousePosition)
+        {
+            if (false)
+            {
+                moveX = Input.GetAxisRaw("Horizontal");
+                moveY = Input.GetAxisRaw("Vertical");
+                boosting = Input.GetKey(KeyCode.Space);
+            }
+            
+            if ((moveX < -0.01f && isFacingRight) || (moveX > 0.01f && !isFacingRight))
+            {
+                FlipSprite();
+            }
+        }
+        else if (Application.isMobilePlatform)
+        {
+            moveX = joystick.Horizontal;
+            moveY = joystick.Vertical;
+            return;
+        }
+        // Mouse
         _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //cursor.transform.position = _mousePos;
-            // Consider using add force
         Vector2 dir = _mousePos - (Vector2)transform.position;
         if (dir.magnitude >= 0.5f)
         {
             float speed = Mathf.Clamp(dir.magnitude * 5, 0, MaxSpeed);
-
+            float factor = 1;
             if (Input.GetMouseButton(0))
             {
-                _rb.velocity = dir.normalized * speed * DashMultiplier;
+                gameManager.StopChargingBoost();
+                factor = gameManager.UseBoost(boostUnit * Time.fixedDeltaTime) ? boostFactor : factor;
+                rb.velocity = dir.normalized * speed * factor;
             }
-            else _rb.velocity = dir.normalized * speed;
-         }
+            else {
+                gameManager.ContinueChargingBoost();
+                rb.velocity = dir.normalized * speed;
+            } 
+        }
         else
         {
-            _rb.velocity = Vector2.zero;
+            rb.velocity = Vector2.zero;
         }
         _anim.SetFloat("Speed", dir.magnitude);
-        if (_rb.velocity.x > 0)
+        if (rb.velocity.x > 0 && !isFacingRight)
         {
-            isFacingRight = true;
-            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            FlipSprite();
         }
-        else if (_rb.velocity.x < 0)
+        else if (rb.velocity.x < 0 && isFacingRight)
         {
-            isFacingRight = false;
-            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            FlipSprite();
         }
-        //}
-        //else _rb.drag = 2f;
-        
-
         _mousePosOnScreen = Input.mousePosition;
-
     }
 
-    
-
-    private bool CheckMouseInBound()
+    private void FixedUpdate()
     {
-        return (Input.mousePosition.x <= Screen.width && Input.mousePosition.x >= 0
-            && Input.mousePosition.y <= Screen.height && Input.mousePosition.y >= 0);
+        float factor = 1;
+        if (boosting)
+        {
+            gameManager.StopChargingBoost();
+            factor = gameManager.UseBoost(boostUnit * Time.fixedDeltaTime) ? boostFactor : factor;
+        }
+        else
+        {
+            gameManager.ContinueChargingBoost();
+        }
+        if (moveX != 0 || moveY != 0)
+        rb.velocity = new Vector2(moveX * moveSpeed * factor, moveY * moveSpeed * factor);
+    }
+
+    private void FlipSprite()
+    {
+        Vector3 currentLocalScale = transform.localScale;
+        transform.localScale = Vector3.Scale(currentLocalScale, new Vector3(-1, 1, 1));
+        isFacingRight = !isFacingRight;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -133,4 +172,9 @@ public class PlayerController_Temp : MonoBehaviour
         isInvincible = false;
     }
 
+    public void SetBoosting(bool state)
+    {
+        if (Application.isMobilePlatform)
+        boosting = state;
+    }
 }

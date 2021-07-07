@@ -111,6 +111,8 @@ public class GameManager_ : MonoBehaviour
         {
             AddProgress(-HungerRate * Time.deltaTime);
         }
+
+        UIPlayer.UpdateEnergy(boost, boostLimit);
         
     }
 

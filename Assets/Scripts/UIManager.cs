@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public GameObject SettingsMenu;
     public GameObject PauseMenu;
 
+    public Image EnergyBar;
     public Canvas HUD;
 
     public TMP_Text ScoreText;
@@ -18,9 +19,12 @@ public class UIManager : MonoBehaviour
     public Image[] StageImages;
     public Image ProgressBar;
 
+    float lerpSpeed;
+
     private void Start()
     {
         ScoreText.SetText(GameManager_.Instance.Score.ToString("000,000,000"));
+        lerpSpeed = 3f * Time.deltaTime;
     }
 
     public void ToggleMenuCanvas(bool val)
@@ -43,7 +47,6 @@ public class UIManager : MonoBehaviour
         PauseMenu.SetActive(val);
     }
 
-
     public void UpdateScore(int score)
     {
         ScoreText.SetText(score.ToString("000,000,000"));
@@ -61,6 +64,13 @@ public class UIManager : MonoBehaviour
             StageImages[i].color = new Color(0, 0, 0, 1);
         }
             
+    }
+
+    public void UpdateEnergy(float currentEnergy, float maxEnergy)
+    {
+        EnergyBar.fillAmount = Mathf.Lerp(EnergyBar.fillAmount, currentEnergy / maxEnergy, lerpSpeed);
+        Color healthColor = Color.Lerp(Color.red, Color.green, (currentEnergy / maxEnergy));
+        EnergyBar.color = healthColor;
     }
 
     public void UpdateLives(int live)

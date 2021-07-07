@@ -98,6 +98,9 @@ public class EnemyBehavior : MonoBehaviour
         if (col.GetComponent<EnemyBehavior>() != null)
         {
             return col.gameObject != this.gameObject && col.GetComponent<EnemyBehavior>().Stage != this.Stage;
+        } else if (col.GetComponent<PlayerController_Temp>() != null)
+        {
+            return true;
         }
         return false;
     }
@@ -109,17 +112,18 @@ public class EnemyBehavior : MonoBehaviour
         if (checkNear.Length > 0)
         {
             nearestEntity = checkNear.OrderBy(col => Vector2.Distance(col.transform.position, transform.position)).First();
-            //if (nearestEntity.CompareTag("Player"))
-            //{
-            //    if (Stage > GameManager_.Instance.Stage)
-            //    {
-            //        Target = nearestEntity.transform.position;
-            //    }
-            //    else
-            //    {
-            //        Target = transform.position + (nearestEntity.transform.position - this.transform.position).normalized * 10f;
-            //    }
-            //}
+            if (nearestEntity.CompareTag("Player"))
+            {
+                if (Stage > GameManager_.Instance.Stage)
+                {
+                    Target = nearestEntity.transform.position;
+                }
+                else
+                {
+                    Target = transform.position + (nearestEntity.transform.position - this.transform.position).normalized * 10f;
+                    print(Target);
+                }
+            }
             if (nearestEntity.CompareTag("Enemy"))
             {
                 EnemyBehavior other = nearestEntity.GetComponent<EnemyBehavior>();
