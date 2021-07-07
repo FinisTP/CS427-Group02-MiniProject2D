@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4823f2778058acc4fa442115256e4b87, type: 3}
-  m_Name: Level1
+  m_Name: Level2
   m_EditorClassIdentifier: 
-  sceneId: 2
+  sceneId: 1
   Progression:
   - RequiredFood: 10
     Scale: 0.7
@@ -25,7 +25,7 @@ MonoBehaviour:
   - {fileID: 8016166978198779620, guid: 0bbc5c3fc3fe0524c8558a266c09cb0c, type: 3}
   - {fileID: 3863635566180601805, guid: 50e6d2a89d788194ebe25a0f69f65733, type: 3}
   - {fileID: 3474578761864754926, guid: c83c3bf51c278444793737e1be8c8241, type: 3}
-  CharacterName: Trunky
+  CharacterName: Stumpy
   HeartIcon: {fileID: 2723492132813748224, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}
-  LevelTopLeft: {x: -20, y: 25}
-  LevelBottomRight: {x: 20, y: -25}
+  LevelTopLeft: {x: -28, y: 21}
+  LevelBottomRight: {x: 28, y: -22}

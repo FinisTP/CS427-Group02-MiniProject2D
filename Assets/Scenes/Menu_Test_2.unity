@@ -3384,6 +3384,14 @@ PrefabInstance:
       propertyPath: LostMenuObject
       value: 
       objectReference: {fileID: 720792629}
+    - target: {fileID: 2162000759655540312, guid: 9eb0c84c6ae0c134591172dc311e707f, type: 3}
+      propertyPath: LevelStats.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162000759655540312, guid: 9eb0c84c6ae0c134591172dc311e707f, type: 3}
+      propertyPath: LevelStats.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: cfa6e31735f351d42881e7dc75432edb, type: 2}
     - target: {fileID: 2162000759655540314, guid: 9eb0c84c6ae0c134591172dc311e707f, type: 3}
       propertyPath: m_Name
       value: GameManager
