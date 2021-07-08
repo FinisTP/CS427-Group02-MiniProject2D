@@ -3386,12 +3386,20 @@ PrefabInstance:
       objectReference: {fileID: 720792629}
     - target: {fileID: 2162000759655540312, guid: 9eb0c84c6ae0c134591172dc311e707f, type: 3}
       propertyPath: LevelStats.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2162000759655540312, guid: 9eb0c84c6ae0c134591172dc311e707f, type: 3}
+      propertyPath: LevelStats.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: cfa6e31735f351d42881e7dc75432edb, type: 2}
     - target: {fileID: 2162000759655540312, guid: 9eb0c84c6ae0c134591172dc311e707f, type: 3}
       propertyPath: LevelStats.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: cfa6e31735f351d42881e7dc75432edb, type: 2}
+      objectReference: {fileID: 11400000, guid: 212ff89ccd77793488e0fc6f1e0240b4, type: 2}
+    - target: {fileID: 2162000759655540312, guid: 9eb0c84c6ae0c134591172dc311e707f, type: 3}
+      propertyPath: LevelStats.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0791eedb211ba32408d6d51961356824, type: 2}
     - target: {fileID: 2162000759655540314, guid: 9eb0c84c6ae0c134591172dc311e707f, type: 3}
       propertyPath: m_Name
       value: GameManager
