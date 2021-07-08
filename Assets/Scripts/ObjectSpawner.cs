@@ -109,16 +109,16 @@ public class ObjectSpawner : MonoBehaviour
                     switch (r)
                     {
                         case 0: // North
-                            spawnPos = new Vector2(Random.Range(GameManager_.WEST_LIMIT, GameManager_.EAST_LIMIT), GameManager_.NORTH_LIMIT); 
+                            spawnPos = new Vector2(Random.Range(GameManager_.Instance.WEST_LIMIT, GameManager_.Instance.EAST_LIMIT), GameManager_.Instance.NORTH_LIMIT); 
                             break;
                         case 1: // South
-                            spawnPos = new Vector2(Random.Range(GameManager_.WEST_LIMIT, GameManager_.EAST_LIMIT), GameManager_.SOUTH_LIMIT);
+                            spawnPos = new Vector2(Random.Range(GameManager_.Instance.WEST_LIMIT, GameManager_.Instance.EAST_LIMIT), GameManager_.Instance.SOUTH_LIMIT);
                             break;
                         case 2: // West
-                            spawnPos = new Vector2(GameManager_.WEST_LIMIT, Random.Range(GameManager_.SOUTH_LIMIT, GameManager_.NORTH_LIMIT));
+                            spawnPos = new Vector2(GameManager_.Instance.WEST_LIMIT, Random.Range(GameManager_.Instance.SOUTH_LIMIT, GameManager_.Instance.NORTH_LIMIT));
                             break;
                         case 3: // East
-                            spawnPos = new Vector2(GameManager_.EAST_LIMIT, Random.Range(GameManager_.SOUTH_LIMIT, GameManager_.NORTH_LIMIT));
+                            spawnPos = new Vector2(GameManager_.Instance.EAST_LIMIT, Random.Range(GameManager_.Instance.SOUTH_LIMIT, GameManager_.Instance.NORTH_LIMIT));
                             break;
                         default:
                             break;
