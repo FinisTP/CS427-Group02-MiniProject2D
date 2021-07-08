@@ -130,7 +130,7 @@ public class GameManager_ : MonoBehaviour
         live = MaxLive;
         score = 0;
         currentProgress = 0;
-        currentZoom = 4.5f;
+        currentZoom = 2.5f;
         Stage = 0;
         Won = false;
         Lost = false;
@@ -226,12 +226,14 @@ public class GameManager_ : MonoBehaviour
 
     public void AddProgress(float prog)
     {
+        if (Won || Lost) return;
         if (currentProgress + prog < 0) currentProgress = 0;
         else if (currentProgress + prog > maxProgress)
         {
             currentProgress = maxProgress;
             Won = true;
-            UIPlayer.ShowWinMenu(true);
+            IsRunningGame = false;
+            StartCoroutine(TriggerWinGame());
             // win game
         }
         currentProgress += prog;
@@ -243,6 +245,7 @@ public class GameManager_ : MonoBehaviour
 
     public void AddScore(int score)
     {
+        if (Won || Lost) return;
         if (this.score + score < int.MaxValue)
         this.score += score;
         UIPlayer.UpdateScore(this.score);
@@ -250,13 +253,17 @@ public class GameManager_ : MonoBehaviour
 
     public void AddLive(int live)
     {
+        if (Won || Lost) return;
         if (this.live + live <= MaxLive && this.live + live > 0) this.live += live;
         else if (live > 0) this.live = MaxLive;
         else if (live < 0)
         {
             this.live = 0;
             Lost = true;
+            IsRunningGame = false;
             UIPlayer.ShowLoseMenu(true);
+            StartCoroutine(TriggerGameOver());
+            // lose game
         }
         UIPlayer.UpdateLives(this.live);
     }
@@ -276,7 +283,21 @@ public class GameManager_ : MonoBehaviour
             Player.transform.localScale = new Vector3(Mathf.Sign(Player.transform.localScale.x) * 1, 1, 1) * Progress[++Stage].Scale;
             currentProgress = Progress[Stage-1].RequiredFood;
             Player.GetComponent<PlayerController>().GrowParticle.Play();
+            currentZoom = 2.5f * Stage + 2.5f;
             // ParticlePlayer.PlayEffect("Grow", Player.transform.position);
         } 
     }
+
+    IEnumerator TriggerGameOver()
+    {
+        yield return new WaitForSeconds(3f);
+        UIPlayer.ShowLoseMenu(true);
+    }
+
+    IEnumerator TriggerWinGame()
+    {
+        yield return new WaitForSeconds(3f);
+        UIPlayer.ShowWinMenu(true);
+    }
+
 }

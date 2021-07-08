@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     public GameObject Point;
     public Texture2D CursorSprite;
 
+    public ParticleSystem DustParticle;
+    public TrailRenderer Trail;
+
     public Joystick joystick;
 
     private bool isInvincible = false;
@@ -51,7 +54,11 @@ public class PlayerController : MonoBehaviour
         {
             moveX = Input.GetAxisRaw("Horizontal");
             moveY = Input.GetAxisRaw("Vertical");
+            Vector2 log = new Vector2(moveX, moveY).normalized;
+            moveX = log.x;
+            moveY = log.y;
             boosting = Input.GetKey(KeyCode.Space);
+            _anim.SetFloat("Speed", 1);
             if ((moveX < -0.01f && isFacingRight) || (moveX > 0.01f && !isFacingRight))
             {
                 FlipSprite();
@@ -62,6 +69,10 @@ public class PlayerController : MonoBehaviour
         {
             moveX = joystick.Horizontal;
             moveY = joystick.Vertical;
+            Vector2 log = new Vector2(moveX, moveY).normalized;
+            moveX = log.x;
+            moveY = log.y;
+            _anim.SetFloat("Speed", 1);
             return;
         }
         // Mouse
@@ -113,6 +124,10 @@ public class PlayerController : MonoBehaviour
         }
         if (moveX != 0 || moveY != 0)
             rb.velocity = new Vector2(moveX * MaxSpeed * factor, moveY * MaxSpeed * factor);
+
+        if (rb.velocity.magnitude > 0) DustParticle.Play();
+        if (rb.velocity.magnitude >= MaxSpeed * boostFactor) _anim.SetBool("Dash", true);
+        else _anim.SetBool("Dash", false);
     }
 
     private void FlipSprite()
@@ -124,7 +139,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isDead) return;
+        if (isDead || !gameManager.IsRunningGame) return;
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyBehavior eb = collision.gameObject.GetComponent<EnemyBehavior>();
@@ -143,6 +158,7 @@ public class PlayerController : MonoBehaviour
                 // TODO: reset stage
                 gameManager.AddLive(-1);
                 gameManager.ResetProgress();
+                rb.velocity = Vector2.zero;
                 GameManager_.Instance.ParticlePlayer.PlayEffect("BloodSplatter", collision.transform.position);
                 StartCoroutine(Respawn());
                 StartCoroutine(DamagedCooldown());
