@@ -13,7 +13,6 @@ public class PlayerController_Temp : MonoBehaviour
     private bool isFacingRight;
     private GameManager_ gameManager;
     private Vector2 _mousePosOnScreen;
-    public GameObject cursor;
 
     public Vector2 StartPosition;
     public ParticleSystem GrowParticle;

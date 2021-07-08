@@ -29,6 +29,8 @@ public class DayNightCycle : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager_.Instance.IsRunningGame) return;
+        else PlayerLight = GameManager_.Instance.Player.GetComponentInChildren<Light2D>().gameObject;
         if (time > 500)
         {
             time = 0;

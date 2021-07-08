@@ -31,14 +31,16 @@ public class EnemyBehavior : MonoBehaviour
 
     private Seeker seeker;
     private Rigidbody2D rb;
+    private Animator anim;
 
     private void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         // anim = GetComponent<Animator>();
         InvokeRepeating("UpdatePath", 2f, .5f);
-        Target = new Vector3(Random.Range(GameManager_.WEST_LIMIT, GameManager_.EAST_LIMIT), Random.Range(GameManager_.SOUTH_LIMIT, GameManager_.NORTH_LIMIT), 0f);
+        Target = new Vector3(Random.Range(GameManager_.Instance.WEST_LIMIT, GameManager_.Instance.EAST_LIMIT), Random.Range(GameManager_.Instance.SOUTH_LIMIT, GameManager_.Instance.NORTH_LIMIT), 0f);
     }
 
     private void UpdatePath()
@@ -62,6 +64,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!GameManager_.Instance.IsRunningGame) return;
         if (path == null) return;
 
         if (currentWaypoint >= path.vectorPath.Count)
@@ -98,7 +101,7 @@ public class EnemyBehavior : MonoBehaviour
         if (col.GetComponent<EnemyBehavior>() != null)
         {
             return col.gameObject != this.gameObject && col.GetComponent<EnemyBehavior>().Stage != this.Stage;
-        } else if (col.GetComponent<PlayerController_Temp>() != null)
+        } else if (col.GetComponent<PlayerController>() != null)
         {
             return true;
         }
@@ -138,7 +141,7 @@ public class EnemyBehavior : MonoBehaviour
                     // chase prey
                 }
             } // else Target = new Vector3(Random.Range(GameManager_.WEST_LIMIT, GameManager_.EAST_LIMIT), Random.Range(GameManager_.SOUTH_LIMIT, GameManager_.NORTH_LIMIT), 0f);
-        } else Target = new Vector3(Random.Range(GameManager_.WEST_LIMIT, GameManager_.EAST_LIMIT), Random.Range(GameManager_.SOUTH_LIMIT, GameManager_.NORTH_LIMIT), 0f);
+        } else Target = new Vector3(Random.Range(GameManager_.Instance.WEST_LIMIT, GameManager_.Instance.EAST_LIMIT), Random.Range(GameManager_.Instance.SOUTH_LIMIT, GameManager_.Instance.NORTH_LIMIT), 0f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -151,6 +154,7 @@ public class EnemyBehavior : MonoBehaviour
                 GameManager_.Instance.ParticlePlayer.PlayEffect("BloodSplatter", collision.transform.position);
                 //GameManager_.Instance.SoundPlayer.PlayClip("Eat", 0.5f);
                 collision.gameObject.SetActive(false);
+                anim.SetTrigger("Attack");
             } else if (collision.GetComponent<EnemyBehavior>().Stage > this.Stage)
             {
                 gameObject.SetActive(false);
