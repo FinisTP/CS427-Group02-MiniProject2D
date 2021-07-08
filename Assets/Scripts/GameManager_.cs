@@ -52,6 +52,10 @@ public class GameManager_ : MonoBehaviour
     private float maxProgress = 0f;
     public int MaxLive = 7;
 
+    private float comboTime = 1f;
+    private float currentComboTime = 0f;
+    private float multiplier = 1f;
+
     public float boost = 0;
     public float boostUnit = 15;
     public float boostLimit = 100;
@@ -89,6 +93,7 @@ public class GameManager_ : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
+        print("level" + level);
         for (int i = 0; i < LevelStats.Length; ++i)
         {
             if (LevelStats[i].sceneId == level)
@@ -127,7 +132,8 @@ public class GameManager_ : MonoBehaviour
         Player.transform.localScale = new Vector3(1, 1, 1) * Progress[0].Scale;
         maxProgress = Progress[Progress.Length - 1].RequiredFood;
 
-        live = MaxLive;
+        if (MaxLive >= 4) live = MaxLive - 2;
+        else live = MaxLive;
         score = 0;
         currentProgress = 0;
         currentZoom = 2.5f;
@@ -143,6 +149,8 @@ public class GameManager_ : MonoBehaviour
     {
         if (!IsRunningGame || Won || Lost) return;
         CameraZoom();
+
+        currentComboTime += Time.deltaTime;
 
         if (!boosting)
         {
@@ -243,12 +251,25 @@ public class GameManager_ : MonoBehaviour
         if (prog > 0) hungerCounter = 0;
     }
 
-    public void AddScore(int score)
+    public int AddScore(int score)
     {
-        if (Won || Lost) return;
+        if (Won || Lost) return 0;
         if (this.score + score < int.MaxValue)
-        this.score += score;
+        {
+            if (currentComboTime < comboTime)
+            {
+                multiplier += 0.5f;
+            } else
+            {
+                multiplier = 1f;
+            }
+            currentComboTime = 0;
+        }
+        int weightedScore = (int)((float)score * multiplier);
         UIPlayer.UpdateScore(this.score);
+        this.score += weightedScore;
+        return weightedScore;
+        
     }
 
     public void AddLive(int live)
@@ -261,7 +282,7 @@ public class GameManager_ : MonoBehaviour
             this.live = 0;
             Lost = true;
             IsRunningGame = false;
-            UIPlayer.ShowLoseMenu(true);
+            //UIPlayer.ShowLoseMenu(true);
             StartCoroutine(TriggerGameOver());
             // lose game
         }
@@ -283,7 +304,7 @@ public class GameManager_ : MonoBehaviour
             Player.transform.localScale = new Vector3(Mathf.Sign(Player.transform.localScale.x) * 1, 1, 1) * Progress[++Stage].Scale;
             currentProgress = Progress[Stage-1].RequiredFood;
             Player.GetComponent<PlayerController>().GrowParticle.Play();
-            currentZoom = 2.5f * Stage + 2.5f;
+            currentZoom = 2.5f * Stage + 1f;
             // ParticlePlayer.PlayEffect("Grow", Player.transform.position);
         } 
     }

@@ -14,6 +14,7 @@ public enum EnemyState
 public class EnemyBehavior : MonoBehaviour
 {
     public int Stage = 1;
+    public bool Eatable = true;
 
     public Vector3 Target;
     public float speed = 200f;
@@ -146,7 +147,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isVisible) return;
+        if (!isVisible || !Eatable) return;
         if (collision.CompareTag("Enemy"))
         {
             if (collision.GetComponent<EnemyBehavior>().Stage < this.Stage)

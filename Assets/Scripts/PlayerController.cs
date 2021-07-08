@@ -148,10 +148,11 @@ public class PlayerController : MonoBehaviour
                 _anim.SetTrigger("Attack");
                 eb.gameObject.SetActive(false);
                 gameManager.AddProgress(eb.value);
+                int score = gameManager.AddScore(eb.scoreValue);
                 GameManager_.Instance.ParticlePlayer.PlayEffect("BloodSplatter", transform.position);
                 if (gameManager.Stage == eb.Stage) CinemachineShake.Instance.ShakeCamera(3f, .2f);
-                SpawnFloatingPoint(eb.scoreValue);
-                gameManager.AddScore(eb.scoreValue);
+                SpawnFloatingPoint(score, eb.scoreValue);
+                
             }
             else if (!isInvincible)
             {
@@ -160,23 +161,33 @@ public class PlayerController : MonoBehaviour
                 gameManager.ResetProgress();
                 rb.velocity = Vector2.zero;
                 GameManager_.Instance.ParticlePlayer.PlayEffect("BloodSplatter", collision.transform.position);
-                StartCoroutine(Respawn());
-                StartCoroutine(DamagedCooldown());
+                if (!gameManager.Lost)
+                {
+                    StartCoroutine(Respawn());
+                    StartCoroutine(DamagedCooldown());
+                }
             }
 
             GameManager_.Instance.SoundPlayer.PlayClip("Eat", 0.5f);
         }
         if (collision.gameObject.CompareTag("Live"))
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
             gameManager.AddLive(1);
+            GameManager_.Instance.SoundPlayer.PlayClip("Mushroom", 0.5f);
+            GameManager_.Instance.ParticlePlayer.PlayEffect("Mushroom", collision.transform.position);
         }
     }
 
-    private void SpawnFloatingPoint(int score)
+    private void SpawnFloatingPoint(int score, int originalScore)
     {
         GameObject point = Instantiate(Point, transform.position, Quaternion.identity);
-        point.GetComponentInChildren<TextMesh>().text = "+" + score.ToString();
+        TextMesh tm = point.GetComponentInChildren<TextMesh>();
+        tm.text = "+" + score.ToString();
+        if (score > originalScore)
+        {
+            tm.fontSize = 100 + (int)(originalScore / score) * 5;
+        } else tm.fontSize = 100;
         point.GetComponentInChildren<MeshRenderer>().sortingOrder = 10;
         Destroy(point, 2f);
     }

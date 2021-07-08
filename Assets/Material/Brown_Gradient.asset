@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Brown_Gradient
   m_EditorClassIdentifier: 
   colorMode: 3
-  topLeft: {r: 0.9411765, g: 0.6784314, b: 0.37254903, a: 1}
-  topRight: {r: 0.9411765, g: 0.6784314, b: 0.37254903, a: 1}
-  bottomLeft: {r: 0.5882353, g: 0.29411766, b: 0, a: 1}
-  bottomRight: {r: 0.5882353, g: 0.29411766, b: 0, a: 1}
+  topLeft: {r: 0.74702567, g: 1, b: 0.6084906, a: 1}
+  topRight: {r: 0.08127741, g: 0.38679248, b: 0.03831435, a: 1}
+  bottomLeft: {r: 0.5943396, g: 0.2971698, b: 0, a: 1}
+  bottomRight: {r: 0.4245283, g: 0.25331524, b: 0.082102165, a: 1}

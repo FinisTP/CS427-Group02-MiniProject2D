@@ -9,8 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu_Test_2.unity
     guid: b50ebb82ab09ad840bf74073b60c6a89
   - enabled: 1
+    path: Assets/Scenes/Menu_Select_level.unity
+    guid: 7f1cccce49c46f14c8ce7c93875b54c7
+  - enabled: 1
+    path: Assets/Scenes/Tutorial-Story.unity
+    guid: c63a972952941b44cbf43b39809cc193
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: aeb9efcaa80270f4ebeb78dc47970ac1
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
-    guid: 661f3a9fdb4c08b48a0121f63132c3a6
+    guid: a3d32be367ca7894785e4972def58457
   - enabled: 1
     path: Assets/Scenes/Phat_Test.unity
     guid: 795fd2620ad65e641b446a6ced6ef79b
