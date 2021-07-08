@@ -5,11 +5,11 @@
 - [x] movement
 - [ ] AI
 - [ ] menu
-- [ ] HUD? 
+- [x] HUD? 
 - [ ] demo
 - [ ] clip quảng cáo
 - [ ] gameplay balance
 - [ ] webgl
-- [ ] screne resolution adaptation
+- [x] screen resolution adaptation
 - [ ] storyline
 - [ ] shopping

@@ -22808,9 +22808,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 7
-  m_Sprite: {fileID: -5219337101871392587, guid: 54b2b8888a737de4db8711e5c38f64e7, type: 3}
+  m_Sprite: {fileID: 5963293022528045683, guid: 7f09f9bbb0c10a84381ba6dd1ba1e808, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -23040,21 +23040,23 @@ MonoBehaviour:
   SoundPlayer: {fileID: 0}
   ParticlePlayer: {fileID: 0}
   UIPlayer: {fileID: 0}
-  Score: 0
+  HungerRate: 5
+  TimeBeforeHunger: 5
   Progress:
   - RequiredFood: 10
-    Scale: 0.7
+    Scale: 1.5
   - RequiredFood: 20
     Scale: 1.4
   IsRunningGame: 1
   Stage: 0
-  currentProgress: 0
   MinZoom: 4.5
   MaxZoom: 10
   ZoomSpeed: 10
+  MaxLive: 7
   boost: 0
   boostUnit: 15
   boostLimit: 100
+  isNight: 0
 --- !u!114 &2041755435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23068,7 +23070,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnDelay: 5
-  Holder: {fileID: 0}
   EnemyPrefabs:
   - EnemyObject: {fileID: 3870972302344558549, guid: 5009ba9d5440c8446a552d037a7a15e1, type: 3}
     name: Chicken
