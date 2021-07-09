@@ -18,8 +18,35 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial.unity
     guid: aeb9efcaa80270f4ebeb78dc47970ac1
   - enabled: 1
+    path: Assets/Scenes/Level1-Story.unity
+    guid: 281fd4611996d504795e286299d35b6b
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
+    guid: 50c4e8877cdd98e4381d80ebdcc1cd7b
+  - enabled: 1
+    path: Assets/Scenes/Level2-Story.unity
+    guid: a95ad8fa7c1292d408d54b4921386b3a
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 448d1db603ea17c4fad9ec7881a86cc0
+  - enabled: 1
+    path: Assets/Scenes/Level3-Story.unity
+    guid: b526d559c388126499f46ea302bf68a5
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
     guid: a3d32be367ca7894785e4972def58457
+  - enabled: 1
+    path: Assets/Scenes/Level4-Story.unity
+    guid: b95edd5f6edcd4c49aeb8b67851ab9ed
+  - enabled: 1
+    path: Assets/Scenes/Level4.unity
+    guid: 9c637cdd2e044834f82f27ceba80cafc
+  - enabled: 1
+    path: Assets/Scenes/Level5-Story.unity
+    guid: cc7ef65bd33202343bfc3743c4cad846
+  - enabled: 1
+    path: Assets/Scenes/Level5.unity
+    guid: 7e1319bf8303c0b45b961c85121e7232
   - enabled: 1
     path: Assets/Scenes/Phat_Test.unity
     guid: 795fd2620ad65e641b446a6ced6ef79b

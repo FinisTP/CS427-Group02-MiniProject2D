@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87184ebd101050c4ab97b7e6bc58eda0, type: 3}
+  m_Name: Level5-Story
+  m_EditorClassIdentifier: 
+  DialogueList:
+  - name: 
+    npcSprite: {fileID: 21300000, guid: f655aac6a147357408ec3138bfe9a853, type: 3}
+    background: {fileID: 21300000, guid: 391929c18b94cca498ffb476d3644114, type: 3}
+    sentence: Damn herbs, you insolent dare to tread your dirty roots into our territory.
+  - name: 
+    npcSprite: {fileID: 0}
+    background: {fileID: 0}
+    sentence: This is just the beginning, we shall meet again. If your kind ain't
+      cowards, go to the city up north.
+  - name: 
+    npcSprite: {fileID: -4212763475116792649, guid: c5bd5ab7d0c11a644b1d429c23168620, type: 3}
+    background: {fileID: 0}
+    sentence: You shall know true fear there, see that your kind will all be burned
+      to ashes!
+  - name: 
+    npcSprite: {fileID: 241620830004830169, guid: 0e2252ae2f1dd6e47a953db79c8dcf02, type: 3}
+    background: {fileID: 21300000, guid: 363f7c8684b476b4c99262975ee265a2, type: 3}
+    sentence: She ran away... Maybe we should take her warning.
+  - name: 
+    npcSprite: {fileID: -7052807861259409856, guid: ae608dca7dfc0524bb92dcd68ebd096c, type: 3}
+    background: {fileID: 0}
+    sentence: Didn't you hear what she said, the humans gather up north to start
+      a forest fire!
+  - name: 
+    npcSprite: {fileID: -2693617739765738453, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}
+    background: {fileID: 21300000, guid: 1bda864af0d6c724fb49abf21740607a, type: 3}
+    sentence: If I'm not mistaken, their city must be near the North region of the
+      World Tree, the Whispering Forest!
+  - name: 
+    npcSprite: {fileID: -4455822056875728695, guid: 0e2252ae2f1dd6e47a953db79c8dcf02, type: 3}
+    background: {fileID: 0}
+    sentence: Isn't that where the Evergreen refugees are staying? Our relatives
+      are in grave danger!
+  - name: 
+    npcSprite: {fileID: -6921624160112399868, guid: 0e2252ae2f1dd6e47a953db79c8dcf02, type: 3}
+    background: {fileID: 0}
+    sentence: What do we even do now... I'm scared to even set foot into the city...
+  - name: 
+    npcSprite: {fileID: 294564659152521552, guid: 54b2b8888a737de4db8711e5c38f64e7, type: 3}
+    background: {fileID: 21300000, guid: 5c420b20edefd3f4294e63e44b50fe62, type: 3}
+    sentence: We must not back away, not this far. To go to the city, we have to
+      pass the Songveil meadow, home of the cruel elves...
+  - name: 
+    npcSprite: {fileID: 2470319409956435798, guid: 0e2252ae2f1dd6e47a953db79c8dcf02, type: 3}
+    background: {fileID: 0}
+    sentence: E---The elves !? They have magic, like, REAL MAGIC! They are going
+      to curse us into mutated species!
+  - name: 
+    npcSprite: {fileID: 21300000, guid: e8c51ace7ecdfd14db4f832281e457d8, type: 3}
+    background: {fileID: 0}
+    sentence: That's right, walk away now.
+  - name: 
+    npcSprite: {fileID: 418397035706068968, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}
+    background: {fileID: 0}
+    sentence: Where's this elf coming from? Regardless, I don't care what you're
+      blathering about. Our Evergreenians are unstoppable.
+  - name: 
+    npcSprite: {fileID: -6982609949668605121, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}
+    background: {fileID: 0}
+    sentence: In fact, this is a good chance for us to cleanse you devil pointy-eared
+      abomination off this peaceful meadow!
+  - name: 
+    npcSprite: {fileID: 21300000, guid: e5a375736f0e69e4b9e86f05c7222213, type: 3}
+    background: {fileID: 0}
+    sentence: Hah! So be it, my kins will tear you all deep down your inner roots!
+      Watch out for the curse of the elves!
+  - name: 
+    npcSprite: {fileID: 0}
+    background: {fileID: 21300000, guid: 363f7c8684b476b4c99262975ee265a2, type: 3}
+    sentence: Let me also tell you, the chameleons and rhinos in this meadow have
+      been corrupted. You shall see how monstrous they have become!
+  - name: 
+    npcSprite: {fileID: 2547258650135898391, guid: 54b2b8888a737de4db8711e5c38f64e7, type: 3}
+    background: {fileID: 0}
+    sentence: Your worst mistake is to threaten us, foolish elves. Brothers and sisters,
+      let us wipe this meadow of the devil!

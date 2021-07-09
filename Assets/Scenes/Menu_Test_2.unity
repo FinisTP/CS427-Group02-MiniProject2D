@@ -878,7 +878,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 537195374}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 365808398}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &537195374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1141,7 +1153,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2434,7 +2446,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Select level
+  m_text: Level Select
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c18dce64c29c19479675da911a9f506, type: 2}
   m_sharedMaterial: {fileID: 4009239361697399015, guid: 1c18dce64c29c19479675da911a9f506, type: 2}
@@ -3279,7 +3291,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1545017892}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 365808398}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1545017892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4033,7 +4057,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2162000759655540312, guid: 9eb0c84c6ae0c134591172dc311e707f, type: 3}
       propertyPath: LevelStats.Array.size
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2162000759655540312, guid: 9eb0c84c6ae0c134591172dc311e707f, type: 3}
       propertyPath: LevelStats.Array.data[0]
@@ -4047,6 +4071,18 @@ PrefabInstance:
       propertyPath: LevelStats.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: 0791eedb211ba32408d6d51961356824, type: 2}
+    - target: {fileID: 2162000759655540312, guid: 9eb0c84c6ae0c134591172dc311e707f, type: 3}
+      propertyPath: LevelStats.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: aad9b32eb45cd0c4ab61fe8e7cb05536, type: 2}
+    - target: {fileID: 2162000759655540312, guid: 9eb0c84c6ae0c134591172dc311e707f, type: 3}
+      propertyPath: LevelStats.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: da4760803f9096a499016d8680b81234, type: 2}
+    - target: {fileID: 2162000759655540312, guid: 9eb0c84c6ae0c134591172dc311e707f, type: 3}
+      propertyPath: LevelStats.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: f30e54178ef2b8941ac64a421f2bfbef, type: 2}
     - target: {fileID: 2162000759655540314, guid: 9eb0c84c6ae0c134591172dc311e707f, type: 3}
       propertyPath: m_Name
       value: GameManager

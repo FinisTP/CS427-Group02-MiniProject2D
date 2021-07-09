@@ -136,7 +136,7 @@ public class GameManager_ : MonoBehaviour
         else live = MaxLive;
         score = 0;
         currentProgress = 0;
-        currentZoom = 2.5f;
+        currentZoom = 3f;
         Stage = 0;
         Won = false;
         Lost = false;
@@ -304,7 +304,7 @@ public class GameManager_ : MonoBehaviour
             Player.transform.localScale = new Vector3(Mathf.Sign(Player.transform.localScale.x) * 1, 1, 1) * Progress[++Stage].Scale;
             currentProgress = Progress[Stage-1].RequiredFood;
             Player.GetComponent<PlayerController>().GrowParticle.Play();
-            currentZoom = 2.5f * Stage + 1f;
+            currentZoom = 3f * Stage + 1f;
             // ParticlePlayer.PlayEffect("Grow", Player.transform.position);
         } 
     }
@@ -319,6 +319,11 @@ public class GameManager_ : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         UIPlayer.ShowWinMenu(true);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
 }

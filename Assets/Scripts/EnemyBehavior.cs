@@ -23,6 +23,8 @@ public class EnemyBehavior : MonoBehaviour
     public float value = 1f;
     public int scoreValue = 200;
 
+    public bool initialSpriteFacingLeft = true;
+
     private bool isVisible = false;
 
     private Path path;
@@ -87,13 +89,13 @@ public class EnemyBehavior : MonoBehaviour
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
         if (distance < toNextWaypointDistance) currentWaypoint++;
-
+        float faceFactor = initialSpriteFacingLeft ? 1 : -1;
         if (force.x >= 0.01f)
         {
-            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x) * faceFactor, transform.localScale.y, transform.localScale.z);
         } else if (force.x <= -0.01f)
         {
-            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * faceFactor, transform.localScale.y, transform.localScale.z);
         }
     }
 
@@ -120,12 +122,12 @@ public class EnemyBehavior : MonoBehaviour
             {
                 if (Stage > GameManager_.Instance.Stage)
                 {
-                    Target = nearestEntity.transform.position;
+                    Target = (Vector2)nearestEntity.transform.position;
                 }
                 else
                 {
-                    Target = transform.position + (nearestEntity.transform.position - this.transform.position).normalized * 10f;
-                    print(Target);
+                    Target = (Vector2)transform.position + ((Vector2)nearestEntity.transform.position - (Vector2)this.transform.position).normalized * 10f;
+                    // print(Target);
                 }
             }
             if (nearestEntity.CompareTag("Enemy"))
@@ -134,11 +136,11 @@ public class EnemyBehavior : MonoBehaviour
                 if (other.Stage > this.Stage)
                 {
                     // Avoid predator
-                    Target = transform.position + (other.transform.position - this.transform.position).normalized * 10f;
+                    Target = (Vector2)transform.position + ((Vector2)other.transform.position - (Vector2)this.transform.position).normalized * 10f;
                 }
                 else if (other.Stage < this.Stage)
                 {
-                    Target = other.transform.position;
+                    Target = (Vector2)other.transform.position;
                     // chase prey
                 }
             } // else Target = new Vector3(Random.Range(GameManager_.WEST_LIMIT, GameManager_.EAST_LIMIT), Random.Range(GameManager_.SOUTH_LIMIT, GameManager_.NORTH_LIMIT), 0f);
@@ -147,7 +149,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isVisible || !Eatable) return;
+        if (!isVisible || gameObject.CompareTag("Live")) return;
         if (collision.CompareTag("Enemy"))
         {
             if (collision.GetComponent<EnemyBehavior>().Stage < this.Stage)

@@ -42,4 +42,9 @@ public class MenuController : MonoBehaviour
             LevelPanels[currentPanel].SetActive(true);
         }
     }
+
+    public void QuitGame()
+    {
+        GameObject.FindObjectOfType<GameManager_>().QuitGame();
+    }
 }

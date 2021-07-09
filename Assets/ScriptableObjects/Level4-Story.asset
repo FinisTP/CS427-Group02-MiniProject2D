@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87184ebd101050c4ab97b7e6bc58eda0, type: 3}
+  m_Name: Level4-Story
+  m_EditorClassIdentifier: 
+  DialogueList:
+  - name: Mushy
+    npcSprite: {fileID: -2754230144694611447, guid: 0e2252ae2f1dd6e47a953db79c8dcf02, type: 3}
+    background: {fileID: 21300000, guid: 4214a06dae0b7b244bc6ca3bbaf1c610, type: 3}
+    sentence: Congratulations! You have conquered the village, now all the humans
+      retreated to the suburban.
+  - name: 
+    npcSprite: {fileID: 8337072257484668778, guid: 0e2252ae2f1dd6e47a953db79c8dcf02, type: 3}
+    background: {fileID: 0}
+    sentence: Now we should move to other regions, the last of them should be there.
+  - name: 
+    npcSprite: {fileID: -2581459109760135476, guid: ae608dca7dfc0524bb92dcd68ebd096c, type: 3}
+    background: {fileID: 0}
+    sentence: Wait, we don't plan on stopping there, of course. Our goal is to dominate
+      the food chain.
+  - name: 
+    npcSprite: {fileID: 241620830004830169, guid: 0e2252ae2f1dd6e47a953db79c8dcf02, type: 3}
+    background: {fileID: 21300000, guid: 391929c18b94cca498ffb476d3644114, type: 3}
+    sentence: Um... Evestein, I think it's enough, you want to chase them into the
+      suburban? That's crazy, Mushy thinks.
+  - name: 
+    npcSprite: {fileID: -7052807861259409856, guid: ae608dca7dfc0524bb92dcd68ebd096c, type: 3}
+    background: {fileID: 0}
+    sentence: Nope, you don't understand, we cannot afford to stop there, the humans
+      aren't afraid of our presence yet.
+  - name: 
+    npcSprite: {fileID: -2693617739765738453, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}
+    background: {fileID: 0}
+    sentence: If we don't scare them to their front door, the humans may come back
+      and bring high technologies with them.
+  - name: 
+    npcSprite: {fileID: 0}
+    background: {fileID: 21300000, guid: 6beaddf5f9af1c34f8aef7ee193a1970, type: 3}
+    sentence: We'll all be doomed if they gather their flamethrowers like last time,
+      thus we need to drive them back as far as possible.
+  - name: 
+    npcSprite: {fileID: -6921624160112399868, guid: 0e2252ae2f1dd6e47a953db79c8dcf02, type: 3}
+    background: {fileID: 0}
+    sentence: ... but it's only getting more and more dangerous from here on out.
+      Mushy thinks he and his friends can't handle it.
+  - name: 
+    npcSprite: {fileID: -6486757542659522978, guid: c5bd5ab7d0c11a644b1d429c23168620, type: 3}
+    background: {fileID: 21300000, guid: 808cacbdfbee1854a9f1e0057c356830, type: 3}
+    sentence: Wise choice, talking plants. You'd better off not taking a single step
+      into the human territory.
+  - name: 
+    npcSprite: {fileID: 2723492132813748224, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}
+    background: {fileID: 0}
+    sentence: Who are you? Another servant of the human?
+  - name: 
+    npcSprite: {fileID: 21300000, guid: daebb0afef5513148a90a5d6977b4104, type: 3}
+    background: {fileID: 0}
+    sentence: My name is Twiggy, in fact, the humans created thousands prototype
+      of us. We are here to protect them.
+  - name: 
+    npcSprite: {fileID: 418397035706068968, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}
+    background: {fileID: 0}
+    sentence: A robot? Funny, we cannot talk reason with you then. The only choice
+      is to devour you also.
+  - name: 
+    npcSprite: {fileID: -6982609949668605121, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}
+    background: {fileID: 21300000, guid: 196b727edea22ee4f9f87f756d372c9f, type: 3}
+    sentence: The wrath of the Evergreen burns within every single one of us, the
+      anger that a machine like you can never understand.
+  - name: 
+    npcSprite: {fileID: 8368872209163142836, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}
+    background: {fileID: 0}
+    sentence: To arms, brothers and sisters! We shall wreck this town into shreds!

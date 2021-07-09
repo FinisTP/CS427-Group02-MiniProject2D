@@ -112,6 +112,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!gameManager.IsRunningGame) return;
         float factor = 1;
         if (boosting)
         {

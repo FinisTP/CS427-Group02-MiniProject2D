@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 4195674428016782151}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.06, y: -1.4, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -119,13 +119,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67667ab5a0f408f4486c1da73d160f2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stage: 3
+  Stage: 0
+  Eatable: 1
   Target: {x: 0, y: 0, z: 0}
   speed: 70
   DetectionRadius: 5
   toNextWaypointDistance: 1.5
-  value: 3
-  scoreValue: 1000
+  value: 0.5
+  scoreValue: 200
+  initialSpriteFacingLeft: 1
 --- !u!61 &4195674428016782200
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -139,7 +141,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.058431864, y: -0.24366379}
+  m_Offset: {x: -0.0951505, y: -0.13350773}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -150,7 +152,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9975352, y: 0.6004441}
+  m_Size: {x: 1.5850339, y: 2.0691924}
   m_EdgeRadius: 0
 --- !u!50 &4195674428016782205
 Rigidbody2D:
