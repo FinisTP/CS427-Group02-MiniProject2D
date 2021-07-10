@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogueList:
   - name: 
-    npcSprite: {fileID: 21300000, guid: f655aac6a147357408ec3138bfe9a853, type: 3}
+    npcSprite: {fileID: 21300000, guid: 6811d6b1ec653e8429c9f270b2a47f31, type: 3}
     background: {fileID: 21300000, guid: 391929c18b94cca498ffb476d3644114, type: 3}
     sentence: Damn herbs, you insolent dare to tread your dirty roots into our territory.
   - name: 

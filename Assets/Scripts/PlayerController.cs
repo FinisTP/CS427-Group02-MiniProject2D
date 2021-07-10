@@ -54,10 +54,10 @@ public class PlayerController : MonoBehaviour
         {
             moveX = Input.GetAxisRaw("Horizontal");
             moveY = Input.GetAxisRaw("Vertical");
-            Vector2 log = new Vector2(moveX, moveY).normalized;
+                boosting = Input.GetKey(KeyCode.Space);
+                Vector2 log = new Vector2(moveX, moveY).normalized;
             moveX = log.x;
             moveY = log.y;
-            boosting = Input.GetKey(KeyCode.Space);
             _anim.SetFloat("Speed", 1);
             if ((moveX < -0.01f && isFacingRight) || (moveX > 0.01f && !isFacingRight))
             {

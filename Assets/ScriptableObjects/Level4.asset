@@ -23,7 +23,7 @@ MonoBehaviour:
   MaxLive: 5
   StageSprites:
   - {fileID: 3351374735972102715, guid: 2547f887027aebd4f9ef54f90e571bea, type: 3}
-  - {fileID: -3075069338194219566, guid: c5bd5ab7d0c11a644b1d429c23168620, type: 3}
+  - {fileID: -2779006670116742643, guid: 5f05f93657817004c8869ae66eb3d395, type: 3}
   - {fileID: 21300000, guid: b551362e9ac6024469fa91c97b735e52, type: 3}
   CharacterName: Stumpy
   HeartIcon: {fileID: 2723492132813748224, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}

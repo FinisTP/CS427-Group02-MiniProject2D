@@ -53,7 +53,7 @@ MonoBehaviour:
     sentence: ... but it's only getting more and more dangerous from here on out.
       Mushy thinks he and his friends can't handle it.
   - name: 
-    npcSprite: {fileID: -6486757542659522978, guid: c5bd5ab7d0c11a644b1d429c23168620, type: 3}
+    npcSprite: {fileID: 21300000, guid: bdd4355a5ec23dc488084066f8048be6, type: 3}
     background: {fileID: 21300000, guid: 808cacbdfbee1854a9f1e0057c356830, type: 3}
     sentence: Wise choice, talking plants. You'd better off not taking a single step
       into the human territory.
@@ -62,7 +62,7 @@ MonoBehaviour:
     background: {fileID: 0}
     sentence: Who are you? Another servant of the human?
   - name: 
-    npcSprite: {fileID: 21300000, guid: daebb0afef5513148a90a5d6977b4104, type: 3}
+    npcSprite: {fileID: -5335423340963208787, guid: 5f05f93657817004c8869ae66eb3d395, type: 3}
     background: {fileID: 0}
     sentence: My name is Twiggy, in fact, the humans created thousands prototype
       of us. We are here to protect them.

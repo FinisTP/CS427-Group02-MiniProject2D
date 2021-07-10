@@ -1,0 +1,8 @@
+- Level 4: bị cái gì tàng hình ăn chết
+- Không có nút back từ level select
+- Bấm nút tương tác ko có sound
+- Chưa có ambience sound
+- Chưa test xem trên android có bấm dash được ko
+- Enemy đi xuyên tường dc (suggest đặt 1 collider cứng và 1 collider mềm để astar chạy đúng)
+- Cho di chuyển bằng cách bấm tự do trên android
+- Cho xài chuột + phím space trên desktop

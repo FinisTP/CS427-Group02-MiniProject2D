@@ -321,6 +321,11 @@ public class GameManager_ : MonoBehaviour
         UIPlayer.ShowWinMenu(true);
     }
 
+    public void Boost(bool state)
+    {
+        Player.GetComponent<PlayerController>().SetBoosting(state);
+    }
+
     public void QuitGame()
     {
         Application.Quit();
