@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public Image EnergyBar;
     public GameObject HUD;
     public Joystick JoyStick;
+    public RectTransform FxHolder;
 
     public TMP_Text ScoreText;
     public Image[] Hearts;
@@ -84,9 +85,11 @@ public class UIManager : MonoBehaviour
 
     public void UpdateEnergy(float currentEnergy, float maxEnergy)
     {
-        EnergyBar.fillAmount = Mathf.Lerp(EnergyBar.fillAmount, currentEnergy / maxEnergy, lerpSpeed);
-        Color healthColor = Color.Lerp(Color.red, Color.green, (currentEnergy / maxEnergy));
+        float progress = currentEnergy / maxEnergy;
+        EnergyBar.fillAmount = Mathf.Lerp(EnergyBar.fillAmount, progress, lerpSpeed);
+        Color healthColor = Color.Lerp(Color.red, Color.green, (progress));
         EnergyBar.color = healthColor;
+        // FxHolder.rotation = Quaternion.Euler(new Vector3(0f, 0f, -progress * 360));
     }
 
     public void UpdateLives(int live)

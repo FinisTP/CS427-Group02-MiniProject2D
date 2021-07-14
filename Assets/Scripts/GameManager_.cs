@@ -19,7 +19,11 @@ public class GameManager_ : MonoBehaviour
     public ParticleManager ParticlePlayer;
     public UIManager UIPlayer;
 
+    public List<IPower> Powers = new List<IPower>();
+
     public LevelStatistics[] LevelStats;
+
+    public int Coin = 0;
 
     public int Score => score;
     public int Live => live;
@@ -46,26 +50,31 @@ public class GameManager_ : MonoBehaviour
     public float MinZoom = 4.5f;
     public float MaxZoom = 10f;
     public float ZoomSpeed = 10f;
-    public string CharacterName = "Simba";
 
     private float currentZoom = 4.5f;
     private float maxProgress = 0f;
     public int MaxLive = 7;
 
-    private float comboTime = 1f;
+    private float comboTime = 2f;
     private float currentComboTime = 0f;
     private float multiplier = 1f;
+    public int comboState = 0;
 
     public float boost = 0;
     public float boostUnit = 15;
     public float boostLimit = 100;
     private bool boosting = false;
 
-    public bool PlayableScene = false;
     public bool Won = false;
     public bool Lost = false;
+    public bool PlayableScene = true;
 
-    public bool isNight = false;
+    public float speedBoost = 0;
+    public float dashTimeBoost = 0;
+    public int shield = 0;
+    private int currentShield = 0;
+    public float scoreMultiplier = 1f;
+    public float comboTimeAmplifer = 0f;
 
     private static GameManager_ instance = null;
     public static GameManager_ Instance
@@ -120,7 +129,6 @@ public class GameManager_ : MonoBehaviour
         MaxLive = ls.MaxLive;
         UIPlayer.SetProgressSprite(ls.StageSprites);
         UIPlayer.SetHeartSprite(ls.HeartIcon);
-        CharacterName = ls.CharacterName;
         NORTH_LIMIT = ls.LevelTopLeft.y;
         SOUTH_LIMIT = ls.LevelBottomRight.y;
         WEST_LIMIT = ls.LevelTopLeft.x;
@@ -136,11 +144,14 @@ public class GameManager_ : MonoBehaviour
         else live = MaxLive;
         score = 0;
         currentProgress = 0;
-        currentZoom = 3f;
+        currentZoom = 4.5f;
+        currentShield = shield;
         Stage = 0;
         Won = false;
         Lost = false;
 
+        UIPlayer.UpdateEnergy(0, boostLimit);
+        UIPlayer.UpdateScore(0);
         UIPlayer.UpdateLives(live);
         UIPlayer.UpdateProgress(currentProgress, 0, Progress[Stage].RequiredFood, Stage);
     }
@@ -154,7 +165,7 @@ public class GameManager_ : MonoBehaviour
 
         if (!boosting)
         {
-            boost += boostUnit * Time.deltaTime;
+            boost += (boostUnit + dashTimeBoost) * Time.deltaTime;
             if (boost >= boostLimit)
             {
                 boost = boostLimit;
@@ -163,6 +174,11 @@ public class GameManager_ : MonoBehaviour
         Decay();
 
         UIPlayer.UpdateEnergy(boost, boostLimit);
+
+        for (int i = 0; i < Powers.Count; ++i)
+        {
+            Powers[i].UpdateEffect();
+        }
         
     }
     
@@ -225,7 +241,8 @@ public class GameManager_ : MonoBehaviour
     {
         if (boost > 0)
         {
-            boost -= used;
+            float reduced = used - dashTimeBoost;
+            boost -= reduced;
             if (boost < 0) boost = 0;
             return true;
         }
@@ -256,25 +273,32 @@ public class GameManager_ : MonoBehaviour
         if (Won || Lost) return 0;
         if (this.score + score < int.MaxValue)
         {
-            if (currentComboTime < comboTime)
+            if (currentComboTime < (comboTime + comboTimeAmplifer))
             {
                 multiplier += 0.5f;
             } else
             {
                 multiplier = 1f;
+                comboState = 0;
             }
             currentComboTime = 0;
         }
-        int weightedScore = (int)((float)score * multiplier);
+        int weightedScore = (int)((float)score * (multiplier + scoreMultiplier));
         UIPlayer.UpdateScore(this.score);
         this.score += weightedScore;
         return weightedScore;
         
     }
 
-    public void AddLive(int live)
+    public bool AddLive(int live)
     {
-        if (Won || Lost) return;
+        if (shield > 0)
+        {
+            shield--;
+            return false;
+        }
+
+        if (Won || Lost) return true;
         if (this.live + live <= MaxLive && this.live + live > 0) this.live += live;
         else if (live > 0) this.live = MaxLive;
         else if (live < 0)
@@ -287,6 +311,7 @@ public class GameManager_ : MonoBehaviour
             // lose game
         }
         UIPlayer.UpdateLives(this.live);
+        return true;
     }
 
     public void ResetProgress()
@@ -304,7 +329,7 @@ public class GameManager_ : MonoBehaviour
             Player.transform.localScale = new Vector3(Mathf.Sign(Player.transform.localScale.x) * 1, 1, 1) * Progress[++Stage].Scale;
             currentProgress = Progress[Stage-1].RequiredFood;
             Player.GetComponent<PlayerController>().GrowParticle.Play();
-            currentZoom = 3f * Stage + 1f;
+            currentZoom = 0.5f * Stage + 4.5f;
             // ParticlePlayer.PlayEffect("Grow", Player.transform.position);
         } 
     }
@@ -317,6 +342,7 @@ public class GameManager_ : MonoBehaviour
 
     IEnumerator TriggerWinGame()
     {
+        Coin += score / 1000;
         yield return new WaitForSeconds(3f);
         UIPlayer.ShowWinMenu(true);
     }
@@ -329,6 +355,18 @@ public class GameManager_ : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void AddPower(IPower power)
+    {
+        Powers.Add(power);
+        power.InitializeEffect();
+    }
+
+    public void RemovePower(IPower power)
+    {
+        Powers.Remove(power);
+        power.EndEffect();
     }
 
 }

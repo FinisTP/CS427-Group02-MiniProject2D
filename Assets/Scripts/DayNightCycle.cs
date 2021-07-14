@@ -56,7 +56,6 @@ public class DayNightCycle : MonoBehaviour
         if (time >= 180 && time <= 320)
         {
             light2D.intensity = (1 / 4900f) * time * time - (5 / 49f) * time + (625 / 49f);
-            GameManager_.Instance.isNight = true;
             PlayerLight.GetComponent<Light2D>().enabled = true;
         } else
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float MaxSpeed;
+    private float MaxSpeed = 5f;
     private Rigidbody2D rb;
     private Animator _anim;
     private Vector2 _mousePos;
@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private bool isInvincible = false;
     public int DashMultiplier = 2;
     private bool isDead = false;
+    private Vector2 MouseDirection;
 
     [SerializeField] private float moveSpeed = 5;
     [SerializeField] private float boostFactor = 2;
@@ -49,21 +50,26 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (!GameManager_.Instance.IsRunningGame || isDead) return;
+        if (Input.GetMouseButton(0))
+        {
+            boosting = true;
+        }
+        else boosting = false;
+        boosting = Input.GetKey(KeyCode.Space) || boosting;
         // Keyboard
         if (!Application.isMobilePlatform && _mousePosOnScreen == (Vector2)Input.mousePosition)
         {
             moveX = Input.GetAxisRaw("Horizontal");
             moveY = Input.GetAxisRaw("Vertical");
-                boosting = Input.GetKey(KeyCode.Space);
-                Vector2 log = new Vector2(moveX, moveY).normalized;
+            
+            Vector2 log = new Vector2(moveX, moveY).normalized;
             moveX = log.x;
             moveY = log.y;
-            _anim.SetFloat("Speed", 1);
+            // _anim.SetFloat("Speed", 1);
             if ((moveX < -0.01f && isFacingRight) || (moveX > 0.01f && !isFacingRight))
             {
                 FlipSprite();
             }
-            return;
         }
         else if (Application.isMobilePlatform)
         {
@@ -72,47 +78,38 @@ public class PlayerController : MonoBehaviour
             Vector2 log = new Vector2(moveX, moveY).normalized;
             moveX = log.x;
             moveY = log.y;
-            _anim.SetFloat("Speed", 1);
-            return;
-        }
-        // Mouse
-        _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 dir = _mousePos - (Vector2)transform.position;
-        if (dir.magnitude >= 0.5f)
-        {
-            float speed = Mathf.Clamp(dir.magnitude * 5, 0, MaxSpeed);
-            float factor = 1;
-            if (Input.GetMouseButton(0))
+            // _anim.SetFloat("Speed", 1);
+            if ((moveX < -0.01f && isFacingRight) || (moveX > 0.01f && !isFacingRight))
             {
-                gameManager.StopChargingBoost();
-                factor = gameManager.UseBoost(boostUnit * Time.fixedDeltaTime) ? boostFactor : factor;
-                rb.velocity = dir.normalized * speed * factor;
+                FlipSprite();
             }
-            else
+        } else
+        {
+            // Mouse
+
+            _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            MouseDirection = _mousePos - (Vector2)transform.position;
+            // _anim.SetFloat("Speed", MouseDirection.magnitude);
+            if (rb.velocity.x > 0 && !isFacingRight)
             {
-                gameManager.ContinueChargingBoost();
-                rb.velocity = dir.normalized * speed;
+                FlipSprite();
             }
+            else if (rb.velocity.x < 0 && isFacingRight)
+            {
+                FlipSprite();
+            }
+            _mousePosOnScreen = Input.mousePosition;
         }
-        else
-        {
-            rb.velocity = Vector2.zero;
-        }
-        _anim.SetFloat("Speed", dir.magnitude);
-        if (rb.velocity.x > 0 && !isFacingRight)
-        {
-            FlipSprite();
-        }
-        else if (rb.velocity.x < 0 && isFacingRight)
-        {
-            FlipSprite();
-        }
-        _mousePosOnScreen = Input.mousePosition;
+        _anim.SetFloat("Speed", rb.velocity.magnitude/2);
+        if (boosting) Trail.enabled = true;
+        else Trail.enabled = false;
+
     }
 
     private void FixedUpdate()
     {
-        if (!gameManager.IsRunningGame) return;
+        if (!gameManager.IsRunningGame || isDead) return;
         float factor = 1;
         if (boosting)
         {
@@ -124,9 +121,24 @@ public class PlayerController : MonoBehaviour
             gameManager.ContinueChargingBoost();
         }
         if (moveX != 0 || moveY != 0)
-            rb.velocity = new Vector2(moveX * MaxSpeed * factor, moveY * MaxSpeed * factor);
+            rb.velocity = new Vector2(moveX * (MaxSpeed + gameManager.speedBoost) * factor, moveY * (MaxSpeed + gameManager.speedBoost) * factor);
+        else
+        {
+            float speed = Mathf.Clamp(MouseDirection.magnitude * (MaxSpeed + gameManager.speedBoost), 0, (MaxSpeed + gameManager.speedBoost));
+            if (MouseDirection.magnitude >= 0.5f)
+            {
+                rb.velocity = MouseDirection.normalized * speed * factor;
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
+            }
+        }
 
-        if (rb.velocity.magnitude > 0) DustParticle.Play();
+        ParticleSystem.EmissionModule module = DustParticle.emission;
+
+        if (rb.velocity.magnitude > 0) { if (!DustParticle.isPlaying) DustParticle.Play(); }
+        else DustParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         if (rb.velocity.magnitude >= MaxSpeed * boostFactor) _anim.SetBool("Dash", true);
         else _anim.SetBool("Dash", false);
     }
@@ -158,15 +170,23 @@ public class PlayerController : MonoBehaviour
             else if (!isInvincible)
             {
                 // TODO: reset stage
-                gameManager.AddLive(-1);
-                gameManager.ResetProgress();
-                rb.velocity = Vector2.zero;
-                GameManager_.Instance.ParticlePlayer.PlayEffect("BloodSplatter", collision.transform.position);
-                if (!gameManager.Lost)
+                bool isEaten = gameManager.AddLive(-1);
+                if (isEaten)
                 {
-                    StartCoroutine(Respawn());
+                    GFX.SetActive(false);
+                    gameManager.ResetProgress();
+                    rb.velocity = Vector2.zero;
+                    GameManager_.Instance.ParticlePlayer.PlayEffect("BloodSplatter", collision.transform.position);
+                    if (!gameManager.Lost)
+                    {
+                        StartCoroutine(Respawn());
+                        StartCoroutine(DamagedCooldown());
+                    }
+                } else
+                {
                     StartCoroutine(DamagedCooldown());
                 }
+                
             }
 
             GameManager_.Instance.SoundPlayer.PlayClip("Eat", 0.5f);
@@ -180,16 +200,81 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void SpawnFloatingPoint(int score, int originalScore)
+    private void SpawnFloatingPoint(float score, float originalScore)
     {
         GameObject point = Instantiate(Point, transform.position, Quaternion.identity);
         TextMesh tm = point.GetComponentInChildren<TextMesh>();
-        tm.text = "+" + score.ToString();
+        float multiplier = Mathf.Round(score/originalScore * 2) / 2;
+        tm.text = "+" + score.ToString() + " (x" + multiplier.ToString("R") + ")";
         if (score > originalScore)
         {
-            tm.fontSize = 100 + (int)(originalScore / score) * 5;
-        } else tm.fontSize = 100;
+            tm.fontSize = 50 + (int)(score / originalScore) * 5;
+        } else tm.fontSize = 50;
+
+        SpawnTag(multiplier);
+
         point.GetComponentInChildren<MeshRenderer>().sortingOrder = 10;
+        Destroy(point, 2f);
+    }
+
+    private void SpawnTag(float mult)
+    {
+        if (mult < 3f) return;
+        int type = 0;
+        if (mult >= 3f && gameManager.comboState == 0)
+        {
+            gameManager.comboState++;
+            type = 1;
+        } else if (mult >= 6f && gameManager.comboState == 1)
+        {
+            gameManager.comboState++;
+            type = 2;
+        } else if (mult >= 9f && gameManager.comboState == 2)
+        {
+            gameManager.comboState++;
+            type = 3;
+        } else if (mult >= 12f && gameManager.comboState == 3)
+        {
+            gameManager.comboState++;
+            type = 4;
+        } else if (mult >= 15f && gameManager.comboState == 4)
+        {
+            gameManager.comboState++;
+            type = 5;
+        }
+        if (type == 0) return;
+
+        GameObject point = Instantiate(Point, transform.position, Quaternion.identity);
+        TextMesh tm = point.GetComponentInChildren<TextMesh>();
+        tm.fontSize = 200;
+        
+        switch (type)
+        {
+            case 1:
+                tm.text = "GREAT!";
+                tm.color = Color.green;
+                break;
+            case 2:
+                tm.text = "AMAZING!";
+                tm.color = Color.red;
+                break;
+            case 3:
+                tm.text = "SUPERSTAR!";
+                tm.color = Color.yellow;
+                break;
+            case 4:
+                tm.text = "LEGENDARY!";
+                tm.color = Color.blue;
+                break;
+            case 5:
+                tm.text = "FRENZY!";
+                tm.color = Color.magenta;
+                break;
+            default:
+                break;
+
+        }
+        point.GetComponentInChildren<MeshRenderer>().sortingOrder = 11;
         Destroy(point, 2f);
     }
 
@@ -209,7 +294,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator Respawn()
     {
         isDead = true;
-        GFX.SetActive(false);
+        
         yield return new WaitForSeconds(2f);
         GFX.SetActive(true);
         isDead = false;

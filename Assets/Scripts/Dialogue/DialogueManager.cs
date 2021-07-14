@@ -86,7 +86,7 @@ public class DialogueManager : MonoBehaviour
 		for (int i = 0; i < letters.Length; ++i)
 		{
 			dialogueText.text += letters[i];
-			yield return new WaitForSeconds(0.05f);
+			yield return new WaitForSeconds(0.03f);
 			if (i % 2 == 0) GameManager_.Instance.SoundPlayer.PlayClip("Blip", 0.2f);
 		}
 		isTyping = false;
