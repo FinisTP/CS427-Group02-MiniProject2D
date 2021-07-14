@@ -25,7 +25,7 @@ public class ShopManager : MonoBehaviour
 
     public void UpdateCoin()
     {
-        money.text = $"{GameManager_.Instance.Coin.ToString("000.000")}";
+        money.text = $"{GameManager_.Instance.Coin.ToString("N0")}";
     }
 
     public void ShowMessage(string message, int messageType)

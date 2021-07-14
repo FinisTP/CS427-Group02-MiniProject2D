@@ -31,20 +31,20 @@ public class TabItem : MonoBehaviour
 
     public Image[] levelCubes;
 
+    private void Start()
+    {
+        if (currentLevel < itemProgression.Length - 1)
+        {
+            priceTag.text = itemProgression[currentLevel].price.ToString();
+        }
+        else priceTag.text = "MAXED";
+    }
+
     public void Buy()
     {
         if (currentLevel < itemProgression.Length && GameManager_.Instance.Coin >= itemProgression[currentLevel].price)
         {
-            currentLevel++;
             GameManager_.Instance.Coin -= itemProgression[currentLevel].price;
-            ShopManager.Instance.ShowMessage(transactionMessage, 2);
-            ShopManager.Instance.UpdateCoin();
-            if (currentLevel < itemProgression.Length - 1)
-            {
-                priceTag.text = itemProgression[currentLevel].price.ToString();
-            }
-            else priceTag.text = "MAXED";
-            
             switch (itemType)
             {
                 case ItemType.Combo:
@@ -64,6 +64,17 @@ public class TabItem : MonoBehaviour
                     break;
 
             }
+
+
+            currentLevel++;
+            ShopManager.Instance.ShowMessage(transactionMessage, 2);
+            ShopManager.Instance.UpdateCoin();
+            if (currentLevel < itemProgression.Length - 1)
+            {
+                priceTag.text = itemProgression[currentLevel].price.ToString();
+            }
+            else priceTag.text = "MAXED";
+            
            
             UpdateLevelCube();
         } else
