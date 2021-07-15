@@ -2158,7 +2158,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 515f1c29e04b4b943944ceb402d255e6, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e528b070b78b29f4f818b951071dd666, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -2984,7 +2984,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4287168436
   m_fontColor: {r: 0.7058824, g: 1, b: 0.53333336, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -3387,7 +3387,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4287168436
   m_fontColor: {r: 0.706073, g: 1, b: 0.5330188, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -4271,7 +4271,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4284610047
   m_fontColor: {r: 1, g: 0.95917106, b: 0.3803922, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -4516,12 +4516,14 @@ MonoBehaviour:
   - name: Eat6
     isSFX: 1
     track: {fileID: 8300000, guid: 60f8f105cf83b7d40ba976b1ccc5c926, type: 3}
-  - name: Dash
+  - name: Button
     isSFX: 1
-    track: {fileID: 8300000, guid: b142919c1a2a7a440af996620a277941, type: 3}
+    track: {fileID: 8300000, guid: a460f404939788d47abad3190110a671, type: 3}
   BGM: {fileID: 1051270430}
   Ambience1: {fileID: 700761053}
   Ambience2: {fileID: 931799022}
+  TitleClip: {fileID: 8300000, guid: cbeb9d195d994b0499b84677388cdbba, type: 3}
+  TitleAmbience: {fileID: 8300000, guid: e528b070b78b29f4f818b951071dd666, type: 3}
 --- !u!1 &1198237472
 GameObject:
   m_ObjectHideFlags: 0
@@ -4953,7 +4955,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4284610047
   m_fontColor: {r: 1, g: 0.9607844, b: 0.3803922, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3

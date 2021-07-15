@@ -55,6 +55,7 @@ public class ShopManager : MonoBehaviour
 
     public void SwitchTab(int tabId)
     {
+        GameManager_.Instance.SoundPlayer.PlayClip("Button");
         for (int i = 0; i < Tabs.Length; ++i)
         {
             if (i != tabId) Tabs[i].SetActive(false);

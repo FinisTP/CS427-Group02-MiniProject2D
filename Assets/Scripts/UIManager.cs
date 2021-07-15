@@ -163,6 +163,7 @@ public class UIManager : MonoBehaviour
 
     public void ToLevelSelect()
     {
+        GameManager_.Instance.SoundPlayer.PlayClip("Button");
         SceneManager.LoadScene(1);
         Time.timeScale = 1f;
         HideInterface();
@@ -170,6 +171,7 @@ public class UIManager : MonoBehaviour
 
     public void ToMenu()
     {
+        GameManager_.Instance.SoundPlayer.PlayClip("Button");
         SceneManager.LoadScene(0);
         Time.timeScale = 1f;
         HideInterface();
@@ -177,6 +179,7 @@ public class UIManager : MonoBehaviour
 
     public void Retry()
     {
+        GameManager_.Instance.SoundPlayer.PlayClip("Button");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
         HideInterface();
@@ -184,6 +187,7 @@ public class UIManager : MonoBehaviour
 
     public void NextLevel()
     {
+        GameManager_.Instance.SoundPlayer.PlayClip("Button");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
         Time.timeScale = 1f;
         HideInterface();

@@ -16,6 +16,17 @@ public class SoundManager : MonoBehaviour
     public AudioSource BGM;
     public AudioSource Ambience1;
     public AudioSource Ambience2;
+
+    public AudioClip TitleClip;
+    public AudioClip TitleAmbience;
+
+    public void PlayTitleClip()
+    {
+        StopAllTrack();
+        PlayBGM(TitleClip, TitleAmbience);
+    }
+
+
     public void PlayClip(string name, float volume = -1)
     {
         foreach (SoundClip clip in SoundClips)

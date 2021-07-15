@@ -42,6 +42,7 @@ public class TabItem : MonoBehaviour
 
     public void Buy()
     {
+        GameManager_.Instance.SoundPlayer.PlayClip("Button");
         if (currentLevel < itemProgression.Length && GameManager_.Instance.Coin >= itemProgression[currentLevel].price)
         {
             GameManager_.Instance.AddCoin(-itemProgression[currentLevel].price);

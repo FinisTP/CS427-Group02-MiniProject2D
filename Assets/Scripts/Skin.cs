@@ -56,6 +56,7 @@ public class Skin : MonoBehaviour
 
     public void SelectSkin()
     {
+        GameManager_.Instance.SoundPlayer.PlayClip("Button");
         if (bought)
         {
             ShopManager.Instance.HighlightSkin(this);

@@ -29,7 +29,7 @@ public class WinMenu : MonoBehaviour
     IEnumerator StartShowing(int count)
     {
         _anim.Play("WinMenu");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         SetStar(count);
         Time.timeScale = 0f;
     }

@@ -128,6 +128,12 @@ public class GameManager_ : MonoBehaviour
         UIPlayer.ToggleHUD(false);
         IsRunningGame = false;
         PlayableScene = false;
+
+        if (level == 0)
+        {
+            SoundPlayer.PlayTitleClip();
+        }
+
     }
 
     private void SetPlayerAnimation()

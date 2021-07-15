@@ -22,11 +22,13 @@ public class MenuController : MonoBehaviour
     }
     public void LoadLevel (int levelId)
     {
+        GameManager_.Instance.SoundPlayer.PlayClip("Button");
         GameObject.FindObjectOfType<GameManager_>().LoadLevel(levelId);
     }
 
     public void ToNextPanel()
     {
+        GameManager_.Instance.SoundPlayer.PlayClip("Button");
         if (currentPanel < LevelPanels.Length - 1)
         {
             LevelPanels[currentPanel++].SetActive(false);
@@ -36,6 +38,7 @@ public class MenuController : MonoBehaviour
 
     public void ToPreviousPanel()
     {
+        GameManager_.Instance.SoundPlayer.PlayClip("Button");
         if (currentPanel > 0)
         {
             LevelPanels[currentPanel--].SetActive(false);

@@ -14495,6 +14495,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5508945634880024586, guid: d0b77115d2f02214e840a782975ce1b3, type: 3}
+      propertyPath: m_BoundingShape2D
+      value: 
+      objectReference: {fileID: 173510387}
+    - target: {fileID: 5508945634880024587, guid: d0b77115d2f02214e840a782975ce1b3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508945634880024587, guid: d0b77115d2f02214e840a782975ce1b3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508945634880024596, guid: d0b77115d2f02214e840a782975ce1b3, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 6370656002576064307}
+    - target: {fileID: 5508945634880024596, guid: d0b77115d2f02214e840a782975ce1b3, type: 3}
+      propertyPath: m_LookAt
+      value: 
+      objectReference: {fileID: 6370656002576064307}
+    - target: {fileID: 5508945635908436469, guid: d0b77115d2f02214e840a782975ce1b3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508945635908436469, guid: d0b77115d2f02214e840a782975ce1b3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.52
+      objectReference: {fileID: 0}
     - target: {fileID: 5508945636269488476, guid: d0b77115d2f02214e840a782975ce1b3, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -14602,6 +14630,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21e3c05ccbed0dc42917dde46b07b60c, type: 3}
+--- !u!4 &6370656002576064307 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6370656003980874547, guid: 21e3c05ccbed0dc42917dde46b07b60c, type: 3}
+  m_PrefabInstance: {fileID: 6370656002576064306}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7453097630457880888
 MonoBehaviour:
   m_ObjectHideFlags: 0
