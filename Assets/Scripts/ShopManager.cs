@@ -11,6 +11,8 @@ public class ShopManager : MonoBehaviour
     public static ShopManager Instance => _instance;
     private static ShopManager _instance = null;
 
+    public List<Skin> skinList;
+
     public GameObject[] Tabs;
 
     private void Awake()
@@ -57,6 +59,23 @@ public class ShopManager : MonoBehaviour
         {
             if (i != tabId) Tabs[i].SetActive(false);
             else Tabs[i].SetActive(true);
+        }
+    }
+
+    public void HighlightSkin(Skin s)
+    {
+        for (int i = 0; i < skinList.Count; ++i)
+        {
+            if (skinList[i] != s)
+            {
+                skinList[i].HighlightSprite(false);
+                skinList[i].isSelected = false;
+            }
+            else
+            {
+                skinList[i].HighlightSprite(true);
+                skinList[i].isSelected = true;
+            }
         }
     }
 

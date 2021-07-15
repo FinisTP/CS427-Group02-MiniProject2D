@@ -72,6 +72,12 @@ public class EnemyBehavior : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager_.Instance.Won)
+        {
+            GameManager_.Instance.ParticlePlayer.PlayEffect("BloodSplatter", transform.position);
+            gameObject.SetActive(false);
+        }
+
         if (!GameManager_.Instance.IsRunningGame) return;
         if (path == null) return;
 

@@ -14,6 +14,7 @@ public class DialogueManager : MonoBehaviour
 	public Animator animator;
 	public Image BackgroundImage;
 	public Image CharacterImage;
+	
 
 	private Queue<Dialogue> dialogues;
 	private string currentSentence;
@@ -67,6 +68,7 @@ public class DialogueManager : MonoBehaviour
 			if (dia.npcSprite != null)
 			CharacterImage.sprite = dia.npcSprite;
 			if (dia.name != "") npcName = dia.name;
+			if (dia.BGM != null) GameManager_.Instance.SoundPlayer.PlayBGM(dia.BGM);
 			StopAllCoroutines();
 			StartCoroutine(TypeSentence());
 			isTyping = true;

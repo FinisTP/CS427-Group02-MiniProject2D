@@ -16,79 +16,95 @@ MonoBehaviour:
   - name: Evestein
     npcSprite: {fileID: -5219337101871392587, guid: 54b2b8888a737de4db8711e5c38f64e7, type: 3}
     background: {fileID: 21300000, guid: 18866a84e00c0be4fb4fc5936d5d78b9, type: 3}
+    BGM: {fileID: 8300000, guid: a8ed547a5ece94c4d9ce5650dbea00f0, type: 3}
     sentence: 'Brothers and sisters, it seems we met at last. I''m Evestein, and
       I know I owe you a lot of explanations for calling you there. '
   - name: 
     npcSprite: {fileID: 4984629828664391499, guid: 54b2b8888a737de4db8711e5c38f64e7, type: 3}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: But whether you like it or not, I'd like to inform you something dreadful.
   - name: 
     npcSprite: {fileID: 418397035706068968, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}
     background: {fileID: 21300000, guid: 6beaddf5f9af1c34f8aef7ee193a1970, type: 3}
+    BGM: {fileID: 0}
     sentence: The humans have reached our land. They cut down the trees and set fire
       to the forests one by one. Many of us have perished in the process...
   - name: 
     npcSprite: {fileID: 2539410780444020406, guid: 959d959572619854daf8fe4ae0e1a055, type: 3}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: The pigs, the chickens, the elephants, the moths,... they all went
       rampage, seeing as they lose their home.
   - name: 
     npcSprite: {fileID: 0}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: It is our duty as the descendants of the Evergreen race to protect
       the World Tree...
   - name: 
     npcSprite: {fileID: 5825911995796837348, guid: 959d959572619854daf8fe4ae0e1a055, type: 3}
     background: {fileID: 21300000, guid: 196b727edea22ee4f9f87f756d372c9f, type: 3}
+    BGM: {fileID: 0}
     sentence: But even now, our home is no more, the Tree is completely burned down.
       OUR HOME IS COMPLETELY BURNED DOWN!
   - name: 
     npcSprite: {fileID: 0}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: Last time I went there, hardly any signs of life remains. The place
       where we used to frolic around and spend moments nourishing our roots...
   - name: 
     npcSprite: {fileID: 2547258650135898391, guid: 54b2b8888a737de4db8711e5c38f64e7, type: 3}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: Long have we been silent, transient beings that give life to all other
       creatures on this planet... But that is no more.
   - name: 
     npcSprite: {fileID: 4984629828664391499, guid: 54b2b8888a737de4db8711e5c38f64e7, type: 3}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: It all falls to us all now. We must take our revenge on the humans,
       for our lost homeland, for JUSTICE.
   - name: 
     npcSprite: {fileID: 0}
     background: {fileID: 21300000, guid: 72cfe0771494bd640a8d95088ab8a7f6, type: 3}
+    BGM: {fileID: 0}
     sentence: What do we even do? We gave them what they need to BREATHE and stay
       alive! What they do is all for their own sake!
   - name: 
     npcSprite: {fileID: -4895472306142806646, guid: ae608dca7dfc0524bb92dcd68ebd096c, type: 3}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: Tell me, dear brothers and sisters, have we not been betrayed enough?
       Have we not suffered in silence for so long?
   - name: 
     npcSprite: {fileID: 418397035706068968, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}
     background: {fileID: 21300000, guid: db3bf455643e0874cb2d1e625555eb0d, type: 3}
+    BGM: {fileID: 0}
     sentence: Sacrifices have to be made. Our race has been granted with the carnivorous
       blood, and by eating smaller animals, we grow bigger and bigger.
   - name: 
     npcSprite: {fileID: 0}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: ... until we grow strong enough to devour these senseless humans once
       and for all.
   - name: 
     npcSprite: {fileID: -1448754199720442605, guid: 54b2b8888a737de4db8711e5c38f64e7, type: 3}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: There is no right or wrong actions, now that we lost everything once
       belonged to us.
   - name: 
     npcSprite: {fileID: 0}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: We are to top off the food chain and bring balance back to nature.
       Only then will humans learn their lessons.
   - name: 
     npcSprite: {fileID: 8243258920512019660, guid: 54b2b8888a737de4db8711e5c38f64e7, type: 3}
     background: {fileID: 21300000, guid: 363f7c8684b476b4c99262975ee265a2, type: 3}
+    BGM: {fileID: 0}
     sentence: If no one attests, I shall show you the rope, how to march, to crush,
       and devour the prey like true meat-eating creatures.

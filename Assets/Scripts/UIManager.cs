@@ -125,14 +125,23 @@ public class UIManager : MonoBehaviour
         Time.timeScale = b ? 0f : 1f;
     }
 
-    public void ShowWinMenu(bool b)
+    public void ShowWinMenu(bool b, int star)
     {
         if (WonMenuObject.activeSelf == b)
             return;
 
         // GameManager_.Instance.IsRunningGame = !b;
         WonMenuObject.SetActive(b);
-        Time.timeScale = b ? 0f : 1f;
+        // Time.timeScale = b ? 0f : 1f;
+        if (!b)
+        {
+            Time.timeScale = 1f;
+            return;
+        }
+         
+        ToggleHUD(false);
+        WonMenuObject.GetComponent<WinMenu>().PlayWinMenu(star, GameManager_.Instance.Score, GameManager_.Instance.Score / 1000);
+        
     }
 
     public void ShowLoseMenu(bool b)
@@ -142,7 +151,14 @@ public class UIManager : MonoBehaviour
 
         // GameManager_.Instance.IsRunningGame = !b;
         LostMenuObject.SetActive(b);
-        Time.timeScale = b ? 0f : 1f;
+        if (!b)
+        {
+            Time.timeScale = 1f;
+            return;
+        }
+        ToggleHUD(false);
+        LostMenuObject.GetComponent<LoseMenu>().PlayLoseMenu(GameManager_.Instance.Score, GameManager_.Instance.Score / 2000);
+        // Time.timeScale = b ? 0f : 1f;
     }
 
     public void ToLevelSelect()
@@ -182,6 +198,8 @@ public class UIManager : MonoBehaviour
     {
         ShowPauseMenu(false);
         ShowLoseMenu(false);
-        ShowWinMenu(false);
+        ShowWinMenu(false, 0);
     }
+
+
 }

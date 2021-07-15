@@ -12,6 +12,7 @@ public class CinemachineShake : MonoBehaviour
     {
         Instance = this;
         cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
+        // processor = GetComponent<RipplePostProcessor>();
     }
 
     public void ShakeCamera(float intensity, float time)
@@ -22,6 +23,7 @@ public class CinemachineShake : MonoBehaviour
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
         shakeTimer = time;
     }
+
     private void Update()
     {
         if (shakeTimer > 0)

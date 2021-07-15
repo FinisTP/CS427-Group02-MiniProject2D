@@ -13,4 +13,7 @@ public class LevelStatistics : ScriptableObject
     public Sprite HeartIcon;
     public Vector2 LevelTopLeft;
     public Vector2 LevelBottomRight;
+    public AudioClip BGM;
+    public AudioClip Ambience1;
+    public AudioClip Ambience2;
 }

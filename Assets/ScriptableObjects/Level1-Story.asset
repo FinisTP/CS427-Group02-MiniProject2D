@@ -16,23 +16,28 @@ MonoBehaviour:
   - name: Evestein
     npcSprite: {fileID: 7138469259204825589, guid: 54b2b8888a737de4db8711e5c38f64e7, type: 3}
     background: {fileID: 21300000, guid: 18866a84e00c0be4fb4fc5936d5d78b9, type: 3}
+    BGM: {fileID: 8300000, guid: a8ed547a5ece94c4d9ce5650dbea00f0, type: 3}
     sentence: We have reached one of the root points of the World Tree. It seems
       the humans have just begun to reach this parch of forest.
   - name: 
     npcSprite: {fileID: 2723492132813748224, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: We shall not let them advance any further.
   - name: 
     npcSprite: {fileID: 418397035706068968, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}
     background: {fileID: 21300000, guid: 690e558aa8fdd404f81186377c8da463, type: 3}
+    BGM: {fileID: 0}
     sentence: Let us strike them down while the sun is on. But beware, their eyes
       are restless, and their bows are vicious.
   - name: 
     npcSprite: {fileID: -8045852313996240462, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: Their meats will be ours after we grow big enough. Perhaps the local
       radishes and bunnies are a good start.
   - name: 
     npcSprite: {fileID: -2693617739765738453, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: One more thing, whatever you do, don't get eaten! Good luck, Evergreenians!

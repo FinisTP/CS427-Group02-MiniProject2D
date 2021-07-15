@@ -13,6 +13,9 @@ public class SoundManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public SoundClip[] SoundClips;
+    public AudioSource BGM;
+    public AudioSource Ambience1;
+    public AudioSource Ambience2;
     public void PlayClip(string name, float volume = -1)
     {
         foreach (SoundClip clip in SoundClips)
@@ -45,8 +48,49 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void PlayBGM(AudioClip clip = null, AudioClip amb1 = null, AudioClip amb2 = null)
+    {
+        StopAllTrack();
+        if (clip != null)
+        {
+            BGM.clip = clip;
+            BGM.loop = true;
+            BGM.Play();
+        }
+        if (amb1 != null)
+        {
+            Ambience1.clip = amb1;
+            Ambience1.loop = true;
+            Ambience1.Play();
+        }
+        if (amb2 != null)
+        {
+            Ambience2.clip = amb1;
+            Ambience2.loop = true;
+            Ambience2.Play();
+        }
+    }
+
+    public void StopAllTrack()
+    {
+        if (BGM.isPlaying) BGM.Stop();
+        if (Ambience1.isPlaying) Ambience1.Stop();
+        if (Ambience2.isPlaying) Ambience2.Stop();
+    }
+
+
     public void SetVolume(float value)
     {
         GetComponent<AudioSource>().volume = value;
     }
+
+    public AudioClip GetTrackFromName(string name)
+    {
+        foreach (SoundClip clip in SoundClips)
+        {
+            if (clip.name == name) return clip.track;
+        }
+        return null;
+    }
+
 }

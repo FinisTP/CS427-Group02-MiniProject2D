@@ -44,7 +44,7 @@ public class TabItem : MonoBehaviour
     {
         if (currentLevel < itemProgression.Length && GameManager_.Instance.Coin >= itemProgression[currentLevel].price)
         {
-            GameManager_.Instance.Coin -= itemProgression[currentLevel].price;
+            GameManager_.Instance.AddCoin(-itemProgression[currentLevel].price);
             switch (itemType)
             {
                 case ItemType.Combo:

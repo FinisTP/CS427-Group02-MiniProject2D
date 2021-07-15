@@ -19,17 +19,20 @@ public class GameManager_ : MonoBehaviour
     public ParticleManager ParticlePlayer;
     public UIManager UIPlayer;
 
+    public AnimatorOverrideController CharacterAnimation;
+
     public List<IPower> Powers = new List<IPower>();
 
     public LevelStatistics[] LevelStats;
 
-    public int Coin = 0;
+    public int Coin => coin;
 
     public int Score => score;
     public int Live => live;
 
     private int score = 0;
     private int live = 9;
+    private int coin = 2000;
 
     public float NORTH_LIMIT = 20f;
     public float SOUTH_LIMIT = -20f;
@@ -76,6 +79,8 @@ public class GameManager_ : MonoBehaviour
     public float scoreMultiplier = 1f;
     public float comboTimeAmplifer = 0f;
 
+    private LevelStatistics currentLevel;
+
     private static GameManager_ instance = null;
     public static GameManager_ Instance
     {
@@ -108,12 +113,14 @@ public class GameManager_ : MonoBehaviour
             if (LevelStats[i].sceneId == level)
             {
                 Player = FindObjectOfType<PlayerController>().gameObject;
+                Invoke("SetPlayerAnimation", 0.5f);
                 MainCamera = FindObjectOfType<CinemachineVirtualCamera>();
                 LoadLevelStat(LevelStats[i]);
                 ResetPlayerStatus();
                 UIPlayer.ToggleHUD(true);
                 PlayableScene = true;
                 IsRunningGame = true;
+                SoundPlayer.PlayBGM(LevelStats[i].BGM, LevelStats[i].Ambience1, LevelStats[i].Ambience2);
                 return;
             }
         }
@@ -123,8 +130,14 @@ public class GameManager_ : MonoBehaviour
         PlayableScene = false;
     }
 
+    private void SetPlayerAnimation()
+    {
+        Player.GetComponent<PlayerController>().SetAnimation(CharacterAnimation);
+    }
+
     private void LoadLevelStat(LevelStatistics ls)
     {
+        currentLevel = ls;
         Progress = ls.Progression;
         MaxLive = ls.MaxLive;
         UIPlayer.SetProgressSprite(ls.StageSprites);
@@ -154,6 +167,8 @@ public class GameManager_ : MonoBehaviour
         UIPlayer.UpdateScore(0);
         UIPlayer.UpdateLives(live);
         UIPlayer.UpdateProgress(currentProgress, 0, Progress[Stage].RequiredFood, Stage);
+
+        SoundPlayer.PlayBGM(currentLevel.BGM, currentLevel.Ambience1, currentLevel.Ambience2);
     }
 
     private void Update()
@@ -194,7 +209,18 @@ public class GameManager_ : MonoBehaviour
 
     public void LoadLevel(int levelId)
     {
-        SceneManager.LoadScene(levelId);
+        StartCoroutine(LoadAsynchronously(levelId));
+    }
+
+    IEnumerator LoadAsynchronously(int sceneIndex)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        while (!operation.isDone)
+        {
+            // print(operation.progress);
+            yield return null;
+        }
+        // yield return new WaitForSeconds(2f);
     }
 
     public void CameraZoom()
@@ -330,21 +356,27 @@ public class GameManager_ : MonoBehaviour
             currentProgress = Progress[Stage-1].RequiredFood;
             Player.GetComponent<PlayerController>().GrowParticle.Play();
             currentZoom = 0.5f * Stage + 4.5f;
+            SoundPlayer.PlayClip("LevelUp");
             // ParticlePlayer.PlayEffect("Grow", Player.transform.position);
         } 
     }
 
     IEnumerator TriggerGameOver()
     {
+        coin += Mathf.Clamp(score / 2000, 0, int.MaxValue);
         yield return new WaitForSeconds(3f);
+        SoundPlayer.StopAllTrack();
+        SoundPlayer.PlayClip("Defeat");
         UIPlayer.ShowLoseMenu(true);
     }
 
     IEnumerator TriggerWinGame()
     {
-        Coin += score / 1000;
+        coin += score / 1000;
         yield return new WaitForSeconds(3f);
-        UIPlayer.ShowWinMenu(true);
+        SoundPlayer.StopAllTrack();
+        SoundPlayer.PlayClip("Victory");
+        UIPlayer.ShowWinMenu(true, (int)Mathf.Round((live/MaxLive)*5f));
     }
 
     public void Boost(bool state)
@@ -367,6 +399,11 @@ public class GameManager_ : MonoBehaviour
     {
         Powers.Remove(power);
         power.EndEffect();
+    }
+
+    public void AddCoin(int num)
+    {
+        if (coin + num >= 0 && coin + num <= 999999) coin += num;
     }
 
 }

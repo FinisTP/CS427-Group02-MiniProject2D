@@ -16,49 +16,59 @@ MonoBehaviour:
   - name: Mushy
     npcSprite: {fileID: -4455822056875728695, guid: 0e2252ae2f1dd6e47a953db79c8dcf02, type: 3}
     background: {fileID: 21300000, guid: 363f7c8684b476b4c99262975ee265a2, type: 3}
+    BGM: {fileID: 8300000, guid: 127c520abd96a8445a2a31b8321622f2, type: 3}
     sentence: Mushy mushy... Mushy is the so called Mr.Mushroom, but call Mushy or
       anyhow you like.
   - name: 
     npcSprite: {fileID: -2754230144694611447, guid: 0e2252ae2f1dd6e47a953db79c8dcf02, type: 3}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: Evestein may have told you this, but Mushy will state it once more...
   - name: 
     npcSprite: {fileID: -5364790588639958657, guid: 0e2252ae2f1dd6e47a953db79c8dcf02, type: 3}
     background: {fileID: 21300000, guid: 0629eafc93ebd084493609c419b17f6f, type: 3}
+    BGM: {fileID: 0}
     sentence: The west division of the World Tree is Mushy and friends' home, the
       Fall Forest. And the humans have begun their siege on claiming it.
   - name: 
     npcSprite: {fileID: 241620830004830169, guid: 0e2252ae2f1dd6e47a953db79c8dcf02, type: 3}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: A part of the forest has been cleared to make way for their villages.
       And now Mushy is in the woods nearby.
   - name: 
     npcSprite: {fileID: -4455822056875728695, guid: 0e2252ae2f1dd6e47a953db79c8dcf02, type: 3}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: Mushy's friends will have to get rid of the local peasants if they
       want to get to the village, so I have a plan for you.
   - name: 
     npcSprite: {fileID: -2419971920513260168, guid: 0e2252ae2f1dd6e47a953db79c8dcf02, type: 3}
     background: {fileID: 21300000, guid: c0b8a608f1668a94d8633f540393df6f, type: 3}
+    BGM: {fileID: 0}
     sentence: See those newborn birds and angry pigs? They should provide enough
       nutritions for you to grow larger...
   - name: 
     npcSprite: {fileID: -2693617739765738453, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: Hold there Mr.Mushroom, they have gotten a bit fierce recently, so
       you should be aware of them also!
   - name: 
     npcSprite: {fileID: -6921624160112399868, guid: 0e2252ae2f1dd6e47a953db79c8dcf02, type: 3}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: Yuck, that's scary! Mushy is out! Good luck, and remember to keep track
       of how many Mushies you have left!
   - name: 
     npcSprite: {fileID: 2723492132813748224, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: Anyway, thanks for your explanation, Mr Mushroom. On a side note, the
       woods is deep and vast.
   - name: 
     npcSprite: {fileID: 2723492132813748224, guid: f672d96e683bdd1469383dd2e9ac1a0e, type: 3}
     background: {fileID: 0}
+    BGM: {fileID: 0}
     sentence: Please take care not to get lost... and one mistaken step will get
       you eaten right away!

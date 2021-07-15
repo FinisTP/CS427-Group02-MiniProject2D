@@ -29,3 +29,6 @@ MonoBehaviour:
   HeartIcon: {fileID: -5364790588639958657, guid: 0e2252ae2f1dd6e47a953db79c8dcf02, type: 3}
   LevelTopLeft: {x: -27, y: 20}
   LevelBottomRight: {x: 27, y: -21}
+  BGM: {fileID: 8300000, guid: 5c2d15c7da738f34a9e6102e7d831432, type: 3}
+  Ambience1: {fileID: 8300000, guid: 17f887a981ce7ee409d7889c02ac1867, type: 3}
+  Ambience2: {fileID: 0}
