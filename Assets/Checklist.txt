@@ -12,3 +12,5 @@
 - Cân bằng lại độ khó game ở các màn 4-6
 - Cân bằng lại các upgrade trong game (hiện tại upgrade vài nấc thì game trở nên dễ quá)
 - Làm bảng option ở main menu (sound, brightness, screen res)
+- Làm random event (một con quái thú to cấp 4 mà mình phải né chứ ko ăn được)
+[Optional] Làm màn endless (ko cho move camera, monster xuất hiện từ nhiều phía đông dần)

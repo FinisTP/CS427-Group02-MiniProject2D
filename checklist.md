@@ -1,15 +1,15 @@
 # The checklist =))
-- [ ] sprite
-- [ ] scene
-- [ ] animation
+- [x] sprite
+- [x] scene
+- [x] animation
 - [x] movement
-- [ ] AI
-- [ ] menu
+- [x] AI
+- [x] menu
 - [x] HUD? 
-- [ ] demo
+- [x] demo
 - [ ] clip quảng cáo
 - [ ] gameplay balance
 - [ ] webgl
 - [x] screen resolution adaptation
-- [ ] storyline
-- [ ] shopping
+- [x] storyline
+- [x] shopping

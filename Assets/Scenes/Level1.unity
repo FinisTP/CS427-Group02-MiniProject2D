@@ -14430,10 +14430,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7928089503634339042, guid: 3cdf8f0ad4fecb44e98209e832d65db6, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7928089505056661920, guid: 3cdf8f0ad4fecb44e98209e832d65db6, type: 3}
       propertyPath: m_Name
       value: TimeAndBackground
