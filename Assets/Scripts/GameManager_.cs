@@ -203,6 +203,7 @@ public class GameManager_ : MonoBehaviour
         UIPlayer.UpdateTrance(currentTranceValue, TranceValue);
         if (IsTrance)
         {
+            tranceBoost = 10f;
             currentTranceValue -= 2f * Time.deltaTime * (1/Time.timeScale);
             if (currentTranceValue < 0)
             {
@@ -242,10 +243,11 @@ public class GameManager_ : MonoBehaviour
         UIPlayer.PlayTrance();
         SoundPlayer.PlayTrance(true);
         currentTranceValue = TranceValue;
+        
         Time.timeScale = 0.5f;
         SMH.midtones.value = new Vector4(0, 0, 0, -1f);
         IsTrance = true;
-        tranceBoost = 10f;
+        
     }
 
     public void ClearTrance()
@@ -473,7 +475,8 @@ public class GameManager_ : MonoBehaviour
         ClearTrance();
         SoundPlayer.StopAllTrack();
         SoundPlayer.PlayClip("Victory");
-        UIPlayer.ShowWinMenu(true, (int)Mathf.Round((live/MaxLive)*5f));
+        print((int)Mathf.Round(score / 200000 * 5f));
+        UIPlayer.ShowWinMenu(true, (int)Mathf.Round(score/200000 * 5f));
     }
 
     public void Boost(bool state)

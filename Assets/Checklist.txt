@@ -9,9 +9,11 @@ Hic chắc bỏ qua - Enemy đi xuyên tường dc (suggest đặt 1 collider c�
 Chắc bỏ qua luôn :)) - Cho di chuyển bằng cách bấm tự do trên android
 <>- Cho xài chuột + phím space trên desktop
 <>- Cần lưu Player preference để lúc start game ko cần chơi lại từ đầu + lưu lại điểm với high score với upgrade, skins
+<>- Làm bảng option ở main menu (sound, brightness, screen res)
+[Optional] Làm random event (một con quái thú to cấp 4 mà mình phải né chứ ko ăn được)
+<> Bật super saiyan mode :))))
+
+
+- Ghi credit chi tiết
 - Cân bằng lại độ khó game ở các màn 4-6
 - Cân bằng lại các upgrade trong game (hiện tại upgrade vài nấc thì game trở nên dễ quá)
-<>- Làm bảng option ở main menu (sound, brightness, screen res)
-- Làm random event (một con quái thú to cấp 4 mà mình phải né chứ ko ăn được)
-<> Bật super saiyan mode :))))
-- Ghi credit chi tiết

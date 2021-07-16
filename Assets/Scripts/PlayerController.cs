@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
             gameManager.ContinueChargingBoost();
         }
         if (!usingMouse && (moveX != 0 || moveY != 0))
-            rb.velocity = new Vector2(moveX * (MaxSpeed + gameManager.speedBoost) * factor, moveY * (MaxSpeed + gameManager.speedBoost) * factor);
+            rb.velocity = new Vector2(moveX * (MaxSpeed + gameManager.speedBoost + gameManager.tranceBoost) * factor, moveY * (MaxSpeed + gameManager.speedBoost + gameManager.tranceBoost) * factor);
 
         if (rb.velocity.magnitude > 0.2f)
         {
