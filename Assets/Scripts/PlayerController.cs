@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public TrailRenderer Trail;
 
     public Joystick joystick;
+    public GameObject Vortex;
 
     private bool isInvincible = false;
     public int DashMultiplier = 2;
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour
         //Cursor.visible = false;
         StartPosition = transform.position;
         joystick = GameObject.FindObjectOfType<FixedJoystick>();
+        Vortex.SetActive(false);
     }
 
     private void Update()

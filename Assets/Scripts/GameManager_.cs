@@ -191,6 +191,7 @@ public class GameManager_ : MonoBehaviour
         UIPlayer.UpdateScore(0);
         UIPlayer.UpdateLives(live);
         UIPlayer.UpdateProgress(currentProgress, 0, Progress[Stage].RequiredFood, Stage);
+        Player.GetComponent<PlayerController>().Vortex.SetActive(false);
 
         SoundPlayer.PlayBGM(currentLevel.BGM, currentLevel.Ambience1, currentLevel.Ambience2);
     }
@@ -202,7 +203,7 @@ public class GameManager_ : MonoBehaviour
         UIPlayer.UpdateTrance(currentTranceValue, TranceValue);
         if (IsTrance)
         {
-            currentTranceValue -= 1f * Time.deltaTime * (1/Time.timeScale);
+            currentTranceValue -= 2f * Time.deltaTime * (1/Time.timeScale);
             if (currentTranceValue < 0)
             {
                 ClearTrance();
@@ -212,6 +213,10 @@ public class GameManager_ : MonoBehaviour
         CameraZoom();
 
         currentComboTime += Time.deltaTime;
+        if (currentComboTime >= comboTime + comboTimeAmplifer)
+        {
+            Player.GetComponent<PlayerController>().Vortex.SetActive(false);
+        }
 
         if (!boosting)
         {
@@ -386,10 +391,11 @@ public class GameManager_ : MonoBehaviour
         {
             if (currentComboTime < (comboTime + comboTimeAmplifer))
             {
+                Player.GetComponent<PlayerController>().Vortex.SetActive(true);
                 multiplier += 0.5f;
             } else
             {
-                multiplier = 1f;
+                multiplier = 0.5f;
                 comboState = 0;
             }
             currentComboTime = 0;

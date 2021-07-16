@@ -195,7 +195,7 @@ public class UIManager : MonoBehaviour
     public void NextLevel()
     {
         GameManager_.Instance.SoundPlayer.PlayClip("Button");
-        if (SceneManager.GetActiveScene().buildIndex < 13)
+        if (SceneManager.GetActiveScene().buildIndex <= 14)
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
         else SceneManager.LoadScene(1);
         Time.timeScale = 1f;
