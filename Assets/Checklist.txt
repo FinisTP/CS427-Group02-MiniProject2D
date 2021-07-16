@@ -5,14 +5,13 @@
 <>- Bấm nút tương tác ko có sound
 <>- Chưa có ambience sound
 <>- Chưa test xem trên android có bấm dash được ko
-- Enemy đi xuyên tường dc (suggest đặt 1 collider cứng và 1 collider mềm để astar chạy đúng)
-- Cho di chuyển bằng cách bấm tự do trên android
+Hic chắc bỏ qua - Enemy đi xuyên tường dc (suggest đặt 1 collider cứng và 1 collider mềm để astar chạy đúng)
+Chắc bỏ qua luôn :)) - Cho di chuyển bằng cách bấm tự do trên android
 <>- Cho xài chuột + phím space trên desktop
-- Cần lưu Player preference để lúc start game ko cần chơi lại từ đầu + lưu lại điểm với high score với upgrade, skins
+<>- Cần lưu Player preference để lúc start game ko cần chơi lại từ đầu + lưu lại điểm với high score với upgrade, skins
 - Cân bằng lại độ khó game ở các màn 4-6
 - Cân bằng lại các upgrade trong game (hiện tại upgrade vài nấc thì game trở nên dễ quá)
-- Làm bảng option ở main menu (sound, brightness, screen res)
+<>- Làm bảng option ở main menu (sound, brightness, screen res)
 - Làm random event (một con quái thú to cấp 4 mà mình phải né chứ ko ăn được)
-- Bật super saiyan mode :))))
+<> Bật super saiyan mode :))))
 - Ghi credit chi tiết
-[Optional] Làm màn endless (ko cho move camera, monster xuất hiện từ nhiều phía đông dần)
