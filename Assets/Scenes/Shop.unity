@@ -2879,6 +2879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca80a50c9706c3b4085dc4dfecd4ef5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemId: 0
   Animation: {fileID: 22100000, guid: c72f61432813d7a45bc51f875e3e25c5, type: 2}
   price: 0
   priceTag: {fileID: 963080407}
@@ -3667,6 +3668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca80a50c9706c3b4085dc4dfecd4ef5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemId: 0
   Animation: {fileID: 22100000, guid: 1ff96fbbc119db54c8a88d313a1f0f73, type: 2}
   price: 1000
   priceTag: {fileID: 1429086837}
@@ -4190,7 +4192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &571486660
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6650,6 +6652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9a2f60995226d4fade6a2120f32c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemId: 0
   itemProgression:
   - price: 100
     effectLevel: 1
@@ -9950,6 +9953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9a2f60995226d4fade6a2120f32c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemId: 0
   itemProgression:
   - price: 100
     effectLevel: 1
@@ -10444,6 +10448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9a2f60995226d4fade6a2120f32c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemId: 0
   itemProgression:
   - price: 100
     effectLevel: 1
@@ -11131,7 +11136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1932599137
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12538,6 +12543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca80a50c9706c3b4085dc4dfecd4ef5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemId: 0
   Animation: {fileID: 22100000, guid: f12e26f78ed3d4c4bbb0b5c05b03904a, type: 2}
   price: 2000
   priceTag: {fileID: 293763441}
@@ -12610,6 +12616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9a2f60995226d4fade6a2120f32c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemId: 0
   itemProgression:
   - price: 100
     effectLevel: 1

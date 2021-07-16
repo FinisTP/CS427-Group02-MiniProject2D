@@ -6,6 +6,7 @@ using TMPro;
 
 public class Skin : MonoBehaviour
 {
+    public int itemId;
     public AnimatorOverrideController Animation;
     public int price;
     public TMP_Text priceTag;
@@ -18,6 +19,11 @@ public class Skin : MonoBehaviour
 
     private void Start()
     {
+        if (ShopManager.Instance.BoughtSkinIds.Contains(itemId))
+        {
+            bought = true;
+        }
+
         priceTag.text = price.ToString("N0");
         if (bought) priceTag.text = "Bought";
     }
@@ -33,6 +39,7 @@ public class Skin : MonoBehaviour
                 ShopManager.Instance.ShowMessage(transactionMessage, 2);
                 ShopManager.Instance.UpdateCoin();
                 bought = true;
+                GameManager_.Instance.tracker.BoughtSkinIds.Add(itemId);
             }
             else ShopManager.Instance.ShowMessage("You don't have enough leaves to buy this skin!", 1);
         } else

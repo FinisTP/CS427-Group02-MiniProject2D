@@ -12,7 +12,8 @@ public class ShopManager : MonoBehaviour
     private static ShopManager _instance = null;
 
     public List<Skin> skinList;
-
+    public List<int> BoughtSkinIds;
+    public Dictionary<int, int> BoughtItemStates;
     public GameObject[] Tabs;
 
     private void Awake()
@@ -22,6 +23,8 @@ public class ShopManager : MonoBehaviour
             _instance = this;
         }
         else Destroy(gameObject);
+        BoughtSkinIds = GameManager_.Instance.tracker.BoughtSkinIds;
+        BoughtItemStates = GameManager_.Instance.tracker.BoughtItemStates;
         UpdateCoin();
     }
 
@@ -78,6 +81,12 @@ public class ShopManager : MonoBehaviour
                 skinList[i].isSelected = true;
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        // GameManager_.Instance.tracker.BoughtSkinIds = BoughtSkinIds;
+        // GameManager_.Instance.tracker.BoughtItemStates = BoughtItemStates;
     }
 
 }

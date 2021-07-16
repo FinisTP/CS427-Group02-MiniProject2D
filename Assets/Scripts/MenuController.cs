@@ -51,6 +51,13 @@ public class MenuController : MonoBehaviour
         GameObject.FindObjectOfType<GameManager_>().QuitGame();
     }
 
+    public void Continue()
+    {
+        int currentLevel = GameManager_.Instance.tracker.CurrentLevel;
+        if (currentLevel <= 5)
+        GameManager_.Instance.LoadLevel(currentLevel * 2 + 2);
+        else GameManager_.Instance.LoadLevel(1);
+    }
 
 
 }

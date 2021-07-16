@@ -23,4 +23,9 @@ public class ConfigSettings : MonoBehaviour
             BrightnessCover.color = new Color(1, 1, 1, sliderValue - 0.5f);
         }
     }
+
+    public void ResetProgress()
+    {
+        GameManager_.Instance.tracker.ClearProgress();
+    }
 }

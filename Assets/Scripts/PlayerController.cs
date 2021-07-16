@@ -201,7 +201,7 @@ public class PlayerController : MonoBehaviour
                     GFX.SetActive(false);
                     gameManager.ResetProgress();
                     rb.velocity = Vector2.zero;
-                    SpawnEaten();
+                    SpawnSignal("EATEN", Color.red);
                     GameManager_.Instance.ParticlePlayer.PlayEffect("BloodSplatter", collision.transform.position);
                     if (!gameManager.Lost)
                     {
@@ -220,17 +220,18 @@ public class PlayerController : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
             gameManager.AddLive(1);
+            SpawnSignal("EXTEND", Color.blue);
             GameManager_.Instance.SoundPlayer.PlayClip("Mushroom", 0.5f);
             GameManager_.Instance.ParticlePlayer.PlayEffect("Mushroom", collision.transform.position);
         }
     }
 
-    private void SpawnEaten()
+    private void SpawnSignal(string signal, Color color)
     {
         GameObject point = Instantiate(Point, transform.position, Quaternion.identity);
         TextMesh tm = point.GetComponentInChildren<TextMesh>();
-        tm.text = "Eaten";
-        tm.color = Color.red;
+        tm.text = signal;
+        tm.color = color;
         // tm.fontStyle = FontStyle.Italic;
         tm.fontSize = 300;
         point.GetComponentInChildren<MeshRenderer>().sortingOrder = 12;

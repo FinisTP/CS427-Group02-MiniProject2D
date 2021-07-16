@@ -87,13 +87,13 @@ public class GameManager_ : MonoBehaviour
     public float scoreMultiplier = 1f;
     public float comboTimeAmplifer = 0f;
 
-    public float TranceValue = 10f;
+    public float TranceValue = 20f;
     public bool IsTrance = false;
-    // public float TranceDuration = 10f;
     private float currentTranceValue = 0f;
-    // private float tranceTimeCounter = 0f;
 
     private LevelStatistics currentLevel;
+
+    public RecordTracker tracker;
 
     private static GameManager_ instance = null;
     public static GameManager_ Instance
@@ -117,6 +117,10 @@ public class GameManager_ : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        coin = tracker.CurrentMoney;
+    }
 
 
     private void OnLevelWasLoaded(int level)
@@ -336,6 +340,17 @@ public class GameManager_ : MonoBehaviour
         return false;
     }
 
+    public void ResetStatus()
+    {
+        coin = 0;
+        speedBoost = 0;
+        dashTimeBoost = 0;
+        shield = 0;
+        currentShield = 0;
+        scoreMultiplier = 1f;
+        comboTimeAmplifer = 0f;
+    }
+
     public void AddProgress(float prog)
     {
         if (Won || Lost) return;
@@ -433,7 +448,8 @@ public class GameManager_ : MonoBehaviour
 
     IEnumerator TriggerGameOver()
     {
-        coin += Mathf.Clamp(score / 2000, 0, int.MaxValue);
+        AddCoin((int)Mathf.Round(score / 2000));
+        tracker.UpdateHighScore(currentLevel.sceneOrder, score);
         yield return new WaitForSeconds(2f);
         ClearTrance();
         SoundPlayer.StopAllTrack();
@@ -444,7 +460,9 @@ public class GameManager_ : MonoBehaviour
 
     IEnumerator TriggerWinGame()
     {
-        coin += score / 1000;
+        tracker.CurrentLevel = currentLevel.sceneOrder;
+        AddCoin((int)Mathf.Round(score / 1000));
+        tracker.UpdateHighScore(currentLevel.sceneOrder, score);
         yield return new WaitForSeconds(2f);
         ClearTrance();
         SoundPlayer.StopAllTrack();
@@ -476,7 +494,16 @@ public class GameManager_ : MonoBehaviour
 
     public void AddCoin(int num)
     {
-        if (coin + num >= 0 && coin + num <= 999999) coin += num;
+        if (coin + num >= 0 && coin + num <= 999999)
+        {
+            coin += num;
+            tracker.CurrentMoney = coin;
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        tracker.SaveProgress();
     }
 
 }

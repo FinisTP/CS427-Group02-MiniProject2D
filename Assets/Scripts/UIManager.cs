@@ -84,7 +84,7 @@ public class UIManager : MonoBehaviour
         {
             StageImages[i].color = new Color(0, 0, 0, 1);
         }
-        if (ProgressBar.fillAmount >= 0.99f) StageImages[StageImages.Length - 1].color = new Color(1, 1, 1, 1);
+        if (ProgressBar.fillAmount >= 1f) StageImages[StageImages.Length - 1].color = new Color(1, 1, 1, 1);
         else StageImages[StageImages.Length - 1].color = new Color(0, 0, 0, 1);
         // print($"Current: {currentProgress},Base: {baseProgress}, Max: {maxProgress}");
 
@@ -195,7 +195,9 @@ public class UIManager : MonoBehaviour
     public void NextLevel()
     {
         GameManager_.Instance.SoundPlayer.PlayClip("Button");
+        if (SceneManager.GetActiveScene().buildIndex < 13)
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        else SceneManager.LoadScene(1);
         Time.timeScale = 1f;
         HideInterface();
     }

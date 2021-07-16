@@ -22,6 +22,7 @@ public class ItemClass
 
 public class TabItem : MonoBehaviour
 {
+    public int itemId;
     private int currentLevel = 1;
     public ItemClass[] itemProgression;
     public string description;
@@ -33,11 +34,17 @@ public class TabItem : MonoBehaviour
 
     private void Start()
     {
+        if (ShopManager.Instance.BoughtItemStates.ContainsKey(itemId))
+        {
+            currentLevel = ShopManager.Instance.BoughtItemStates[itemId];
+        }
         if (currentLevel < itemProgression.Length - 1)
         {
             priceTag.text = itemProgression[currentLevel].price.ToString();
         }
         else priceTag.text = "MAXED";
+        UpdateLevelCube();
+        ModifyPlayer();
     }
 
     public void Buy()
@@ -45,26 +52,9 @@ public class TabItem : MonoBehaviour
         GameManager_.Instance.SoundPlayer.PlayClip("Button");
         if (currentLevel < itemProgression.Length && GameManager_.Instance.Coin >= itemProgression[currentLevel].price)
         {
+            GameManager_.Instance.tracker.BoughtItemStates[itemId] = currentLevel;
             GameManager_.Instance.AddCoin(-itemProgression[currentLevel].price);
-            switch (itemType)
-            {
-                case ItemType.Combo:
-                    ModifyCombo(itemProgression[currentLevel].effectLevel);
-                    break;
-                case ItemType.Score:
-                    ModifyScore(itemProgression[currentLevel].effectLevel);
-                    break;
-                case ItemType.Shield:
-                    ModifyShield((int)itemProgression[currentLevel].effectLevel);
-                    break;
-                case ItemType.Dash:
-                    ModifyDash(itemProgression[currentLevel].effectLevel);
-                    break;
-                case ItemType.Speed:
-                    ModifySpeed(itemProgression[currentLevel].effectLevel);
-                    break;
-
-            }
+            ModifyPlayer();
 
 
             currentLevel++;
@@ -81,6 +71,29 @@ public class TabItem : MonoBehaviour
         } else
         {
             ShopManager.Instance.ShowMessage("You don't have enough leaves to purchase this item!", 1);
+        }
+    }
+
+    public void ModifyPlayer()
+    {
+        switch (itemType)
+        {
+            case ItemType.Combo:
+                ModifyCombo(itemProgression[currentLevel-1].effectLevel);
+                break;
+            case ItemType.Score:
+                ModifyScore(itemProgression[currentLevel-1].effectLevel);
+                break;
+            case ItemType.Shield:
+                ModifyShield((int)itemProgression[currentLevel-1].effectLevel);
+                break;
+            case ItemType.Dash:
+                ModifyDash(itemProgression[currentLevel-1].effectLevel);
+                break;
+            case ItemType.Speed:
+                ModifySpeed(itemProgression[currentLevel-1].effectLevel);
+                break;
+
         }
     }
 

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4823f2778058acc4fa442115256e4b87, type: 3}
   m_Name: Level2
   m_EditorClassIdentifier: 
+  sceneOrder: 3
   sceneId: 7
   Progression:
   - RequiredFood: 15

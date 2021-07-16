@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="New Level Stat", menuName="Level")]
 public class LevelStatistics : ScriptableObject
 {
+    public int sceneOrder;
     public int sceneId;
     public PlayerProgression[] Progression;
     public int MaxLive;

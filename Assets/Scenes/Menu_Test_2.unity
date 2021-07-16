@@ -198,6 +198,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35791061}
   m_CullTransparentMesh: 1
+--- !u!1 &112992548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 112992549}
+  - component: {fileID: 112992550}
+  m_Layer: 0
+  m_Name: RecordTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &112992549
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112992548}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2041755433}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &112992550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112992548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9ac32078f3e94843938374a64914efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentLevel: 0
+  BoughtSkinIds: 
+  CurrentMoney: 200
 --- !u!1 &129890603
 GameObject:
   m_ObjectHideFlags: 0
@@ -2158,8 +2204,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 365808398}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: LoadLevel
-        m_Mode: 3
+        m_MethodName: Continue
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9160,6 +9206,7 @@ Transform:
   - {fileID: 2162000758258564420}
   - {fileID: 2162000759790327101}
   - {fileID: 2063991027}
+  - {fileID: 112992549}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9225,6 +9272,7 @@ MonoBehaviour:
   comboTimeAmplifer: 0
   TranceValue: 20
   IsTrance: 0
+  tracker: {fileID: 112992550}
 --- !u!1 &2043392076
 GameObject:
   m_ObjectHideFlags: 0
