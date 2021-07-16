@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
 
             MouseDirection = _mousePos - (Vector2)transform.position;
 
-            float speed = Mathf.Clamp(MouseDirection.magnitude * (MaxSpeed + gameManager.speedBoost), 0, (MaxSpeed + gameManager.speedBoost));
+            float speed = Mathf.Clamp(MouseDirection.magnitude * (MaxSpeed + gameManager.speedBoost + gameManager.tranceBoost), 0, (MaxSpeed + gameManager.speedBoost + gameManager.tranceBoost));
             if (MouseDirection.magnitude >= 0.5f)
             {
                 rb.velocity = MouseDirection.normalized * speed * factor;
@@ -179,7 +179,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyBehavior eb = collision.gameObject.GetComponent<EnemyBehavior>();
-            if (gameManager.Stage >= eb.Stage)
+            if (gameManager.Stage >= eb.Stage || gameManager.IsTrance)
             {
                 _anim.SetTrigger("Attack");
                 eb.gameObject.SetActive(false);

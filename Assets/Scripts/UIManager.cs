@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour
     public GameObject LostMenuObject;
 
     public Sprite Flag;
+    public GameObject TranceObject;
+    public Image TranceBar;
 
     float lerpSpeed;
 
@@ -59,6 +61,11 @@ public class UIManager : MonoBehaviour
     public void ToggleHUD(bool val)
     {
         HUD.SetActive(val);
+    }
+
+    public void UpdateTrance(float value, float maxValue)
+    {
+        TranceBar.fillAmount = Mathf.Clamp(value / maxValue, 0, 1);
     }
 
     public void UpdateScore(int score)
@@ -111,7 +118,7 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if (GameManager_.Instance.PlayableScene && Input.GetKeyDown(KeyCode.Escape))
+        if (GameManager_.Instance.PlayableScene && !GameManager_.Instance.IsTrance && Input.GetKeyDown(KeyCode.Escape))
             ShowPauseMenu(!PauseMenuObject.activeSelf);
     }
 
@@ -203,6 +210,11 @@ public class UIManager : MonoBehaviour
         ShowPauseMenu(false);
         ShowLoseMenu(false);
         ShowWinMenu(false, 0);
+    }
+
+    public void PlayTrance()
+    {
+        TranceObject.GetComponent<Animator>().Play("Trance");
     }
 
 

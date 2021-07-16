@@ -3921,8 +3921,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 26.599998, y: -190.6}
-  m_SizeDelta: {x: 65.295, y: 353.5}
+  m_AnchoredPosition: {x: 12.6, y: -1.81}
+  m_SizeDelta: {x: 37.3, y: 17.32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1513792075
 MonoBehaviour:
@@ -4007,7 +4007,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 351.6309}
+  m_margin: {x: 0, y: 0, z: 0, w: 2.4801219}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

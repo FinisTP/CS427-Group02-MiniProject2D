@@ -17,6 +17,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource Ambience1;
     public AudioSource Ambience2;
     public AudioSource Footstep;
+    public AudioSource Trance;
 
     public AudioClip TitleClip;
     public AudioClip TitleAmbience;
@@ -92,6 +93,8 @@ public class SoundManager : MonoBehaviour
         if (BGM.isPlaying) BGM.Stop();
         if (Ambience1.isPlaying) Ambience1.Stop();
         if (Ambience2.isPlaying) Ambience2.Stop();
+        if (Footstep.isPlaying) Footstep.Stop();
+        if (Trance.isPlaying) Trance.Stop();
     }
 
 
@@ -120,6 +123,33 @@ public class SoundManager : MonoBehaviour
         } else
         {
             Footstep.Stop();
+        }
+    }
+
+    public void PauseAllTracks()
+    {
+        if (BGM.isPlaying) BGM.Pause();
+        if (Ambience1.isPlaying) Ambience1.Pause();
+        if (Ambience2.isPlaying) Ambience2.Pause();
+    }
+
+    public void ContinueAllTracks()
+    {
+        if (!BGM.isPlaying) BGM.Play();
+        if (!Ambience1.isPlaying) Ambience1.Play();
+        if (!Ambience2.isPlaying) Ambience2.Play();
+    }
+
+    public void PlayTrance(bool state)
+    {
+        if (state == true) {
+            if (!Trance.isPlaying) Trance.Play();
+            PauseAllTracks();
+        }  
+        else
+        {
+            Trance.Pause();
+            ContinueAllTracks();
         }
     }
 

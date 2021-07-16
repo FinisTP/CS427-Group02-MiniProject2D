@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class RecordTracker : MonoBehaviour
 {
-    
+    public void SaveProgress()
+    {
+
+    }
 }

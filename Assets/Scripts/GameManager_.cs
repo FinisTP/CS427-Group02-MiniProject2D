@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Cinemachine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Experimental.Rendering.Universal;
 
 [System.Serializable]
 public class PlayerProgression
@@ -18,6 +21,10 @@ public class GameManager_ : MonoBehaviour
     public SoundManager SoundPlayer;
     public ParticleManager ParticlePlayer;
     public UIManager UIPlayer;
+    public Volume GlobalVolume;
+
+    private ShadowsMidtonesHighlights SMH;
+    
 
     public AnimatorOverrideController CharacterAnimation;
 
@@ -67,6 +74,7 @@ public class GameManager_ : MonoBehaviour
     public float boostUnit = 15;
     public float boostLimit = 100;
     private bool boosting = false;
+    public float tranceBoost = 10f;
 
     public bool Won = false;
     public bool Lost = false;
@@ -79,11 +87,11 @@ public class GameManager_ : MonoBehaviour
     public float scoreMultiplier = 1f;
     public float comboTimeAmplifer = 0f;
 
-    public float TranceValue = 20f;
+    public float TranceValue = 10f;
     public bool IsTrance = false;
-    public float TranceDuration = 10f;
+    // public float TranceDuration = 10f;
     private float currentTranceValue = 0f;
-    private float tranceTimeCounter = 0f;
+    // private float tranceTimeCounter = 0f;
 
     private LevelStatistics currentLevel;
 
@@ -186,6 +194,17 @@ public class GameManager_ : MonoBehaviour
     private void Update()
     {
         if (!IsRunningGame || Won || Lost) return;
+
+        UIPlayer.UpdateTrance(currentTranceValue, TranceValue);
+        if (IsTrance)
+        {
+            currentTranceValue -= 1f * Time.deltaTime * (1/Time.timeScale);
+            if (currentTranceValue < 0)
+            {
+                ClearTrance();
+            }
+        }
+
         CameraZoom();
 
         currentComboTime += Time.deltaTime;
@@ -208,14 +227,43 @@ public class GameManager_ : MonoBehaviour
         }
         
     }
+
+    public void ActivateTrance()
+    {
+        UIPlayer.PlayTrance();
+        SoundPlayer.PlayTrance(true);
+        currentTranceValue = TranceValue;
+        Time.timeScale = 0.5f;
+        SMH.midtones.value = new Vector4(0, 0, 0, -1f);
+        IsTrance = true;
+        tranceBoost = 10f;
+    }
+
+    public void ClearTrance()
+    {
+        currentTranceValue = 0f;
+        Time.timeScale = 1f;
+        SMH.midtones.value = new Vector4(1, 1, 1, 0f);
+        IsTrance = false;
+        tranceBoost = 0f;
+        SoundPlayer.PlayTrance(false);
+    }
     
     public void Decay()
     {
-        hungerCounter += Time.deltaTime;
-        if (hungerCounter >= TimeBeforeHunger && !Won && !Lost && ((Stage == 0 && currentProgress - HungerRate * Time.deltaTime > 0)
-            || (Stage > 0 && currentProgress - HungerRate * Time.deltaTime > Progress[Stage - 1].RequiredFood)))
+        if (!IsTrance)
         {
-            AddProgress(-HungerRate * Time.deltaTime);
+            hungerCounter += Time.deltaTime;
+            //if (hungerCounter >= TimeBeforeHunger && !Won && !Lost && ((Stage == 0 && currentProgress - HungerRate * Time.deltaTime > 0)
+            //    || (Stage > 0 && currentProgress - HungerRate * Time.deltaTime > Progress[Stage - 1].RequiredFood)))
+            //{
+            //    AddProgress(-HungerRate * Time.deltaTime);
+            //}
+            if (hungerCounter >= TimeBeforeHunger && !Won && !Lost)
+            {
+                currentTranceValue -= Time.deltaTime;
+                if (currentTranceValue < 0) currentTranceValue = 0;
+            }
         }
     }
 
@@ -263,7 +311,8 @@ public class GameManager_ : MonoBehaviour
         }
         UIPlayer.ToggleHUD(false);
         IsRunningGame = false;
-
+        GlobalVolume.profile.TryGet<ShadowsMidtonesHighlights>(out SMH);
+        ClearTrance();
     }
 
     public void ContinueChargingBoost()
@@ -309,6 +358,15 @@ public class GameManager_ : MonoBehaviour
     public int AddScore(int score)
     {
         if (Won || Lost) return 0;
+        if (!IsTrance)
+        {
+            currentTranceValue += 1f;
+            if (currentTranceValue > TranceValue)
+            {
+                ActivateTrance();
+            }
+        }
+        
         if (this.score + score < int.MaxValue)
         {
             if (currentComboTime < (comboTime + comboTimeAmplifer))
@@ -376,16 +434,19 @@ public class GameManager_ : MonoBehaviour
     IEnumerator TriggerGameOver()
     {
         coin += Mathf.Clamp(score / 2000, 0, int.MaxValue);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
+        ClearTrance();
         SoundPlayer.StopAllTrack();
         SoundPlayer.PlayClip("Defeat");
         UIPlayer.ShowLoseMenu(true);
+        
     }
 
     IEnumerator TriggerWinGame()
     {
         coin += score / 1000;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
+        ClearTrance();
         SoundPlayer.StopAllTrack();
         SoundPlayer.PlayClip("Victory");
         UIPlayer.ShowWinMenu(true, (int)Mathf.Round((live/MaxLive)*5f));
