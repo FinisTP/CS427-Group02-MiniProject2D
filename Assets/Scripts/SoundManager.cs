@@ -16,14 +16,19 @@ public class SoundManager : MonoBehaviour
     public AudioSource BGM;
     public AudioSource Ambience1;
     public AudioSource Ambience2;
+    public AudioSource Footstep;
 
     public AudioClip TitleClip;
     public AudioClip TitleAmbience;
 
     public void PlayTitleClip()
     {
-        StopAllTrack();
-        PlayBGM(TitleClip, TitleAmbience);
+        if (BGM.clip != TitleClip)
+        {
+            StopAllTrack();
+            PlayBGM(TitleClip, TitleAmbience);
+        }
+        
     }
 
 
@@ -103,5 +108,21 @@ public class SoundManager : MonoBehaviour
         }
         return null;
     }
+
+    public void PlayFootStep(bool state)
+    {
+        if (state == true)
+        {
+            if (!Footstep.isPlaying)
+            {
+                Footstep.Play();
+            }
+        } else
+        {
+            Footstep.Stop();
+        }
+    }
+
+
 
 }

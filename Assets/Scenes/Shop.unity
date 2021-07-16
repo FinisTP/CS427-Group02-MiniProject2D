@@ -5013,7 +5013,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You don't have enough money to buy this item!
+  m_text: Welcome to Twiggy's market! Please take a look at my wares...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c18dce64c29c19479675da911a9f506, type: 2}
   m_sharedMaterial: {fileID: 4009239361697399015, guid: 1c18dce64c29c19479675da911a9f506, type: 2}

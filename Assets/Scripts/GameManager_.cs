@@ -79,6 +79,12 @@ public class GameManager_ : MonoBehaviour
     public float scoreMultiplier = 1f;
     public float comboTimeAmplifer = 0f;
 
+    public float TranceValue = 20f;
+    public bool IsTrance = false;
+    public float TranceDuration = 10f;
+    private float currentTranceValue = 0f;
+    private float tranceTimeCounter = 0f;
+
     private LevelStatistics currentLevel;
 
     private static GameManager_ instance = null;

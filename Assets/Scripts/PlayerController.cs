@@ -147,8 +147,15 @@ public class PlayerController : MonoBehaviour
         if (!usingMouse && (moveX != 0 || moveY != 0))
             rb.velocity = new Vector2(moveX * (MaxSpeed + gameManager.speedBoost) * factor, moveY * (MaxSpeed + gameManager.speedBoost) * factor);
 
-        if (rb.velocity.magnitude > 0) { if (!DustParticle.isPlaying) DustParticle.Play(); }
-        else DustParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        if (rb.velocity.magnitude > 0.2f)
+        {
+            if (!DustParticle.isPlaying) DustParticle.Play();
+            gameManager.SoundPlayer.PlayFootStep(true);
+        }
+        else {
+            DustParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            gameManager.SoundPlayer.PlayFootStep(false);
+        } 
         if (rb.velocity.magnitude >= MaxSpeed * boostFactor) _anim.SetBool("Dash", true);
         else _anim.SetBool("Dash", false);
     }
