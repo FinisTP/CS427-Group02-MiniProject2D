@@ -14,7 +14,7 @@ Chắc bỏ qua luôn :)) - Cho di chuyển bằng cách bấm tự do trên and
 <> Bật super saiyan mode :))))
 
 
-- Ghi credit chi tiết
+<> Ghi credit chi tiết
 <> Cân bằng lại độ khó game ở các màn 4-6
 <> Cân bằng lại các upgrade trong game (hiện tại upgrade vài nấc thì game trở nên dễ quá)
 <> Chỉnh lại start game box

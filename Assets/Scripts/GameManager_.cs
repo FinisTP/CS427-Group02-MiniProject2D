@@ -120,6 +120,32 @@ public class GameManager_ : MonoBehaviour
     private void Start()
     {
         coin = tracker.CurrentMoney;
+        speedBoost = 0.5f;
+        dashTimeBoost = 0.5f;
+        scoreMultiplier = 0.5f;
+        comboTimeAmplifer = 0.5f;
+        foreach (KeyValuePair<int,int> kvp in tracker.BoughtItemStates)
+        {
+            switch(kvp.Key)
+            {
+                case 1:
+                    // speed
+                    speedBoost = 0.5f + 0.5f * kvp.Value;
+                    break;
+                case 2:
+                    dashTimeBoost = 0.5f + 0.5f * kvp.Value;
+                    break;
+                //dash
+                case 3:
+                    scoreMultiplier = 0.5f + 0.5f * kvp.Value;
+                    break;
+                //score
+                case 4:
+                    comboTimeAmplifer = 0.5f + 0.5f * kvp.Value;
+                    break;
+                    // combo
+            }
+        }
     }
 
 
@@ -221,7 +247,7 @@ public class GameManager_ : MonoBehaviour
 
         if (!boosting)
         {
-            boost += (boostUnit + dashTimeBoost) * Time.deltaTime;
+            boost += (boostUnit + dashTimeBoost * 5) * Time.deltaTime;
             if (boost >= boostLimit)
             {
                 boost = boostLimit;
@@ -339,7 +365,7 @@ public class GameManager_ : MonoBehaviour
     {
         if (boost > 0)
         {
-            float reduced = used - dashTimeBoost;
+            float reduced = used;
             boost -= reduced;
             if (boost < 0) boost = 0;
             return true;
@@ -402,7 +428,9 @@ public class GameManager_ : MonoBehaviour
             }
             currentComboTime = 0;
         }
-        int weightedScore = (int)((float)score * (multiplier + scoreMultiplier));
+        int weightedScore = (int)((float)(score) * multiplier * scoreMultiplier);
+        print(score);
+        print(weightedScore);
         UIPlayer.UpdateScore(this.score);
         this.score += weightedScore;
         return weightedScore;

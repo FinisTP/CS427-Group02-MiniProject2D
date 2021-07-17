@@ -16,6 +16,23 @@ public class ShopManager : MonoBehaviour
     public Dictionary<int, int> BoughtItemStates;
     public GameObject[] Tabs;
 
+    private void OnLevelWasLoaded(int level)
+    {
+        if (level == 15)
+        {
+            BoughtSkinIds = GameManager_.Instance.tracker.BoughtSkinIds;
+            BoughtItemStates = GameManager_.Instance.tracker.BoughtItemStates;
+            UpdateCoin();
+        }
+    }
+
+    private void OnEnable()
+    {
+        BoughtSkinIds = GameManager_.Instance.tracker.BoughtSkinIds;
+        BoughtItemStates = GameManager_.Instance.tracker.BoughtItemStates;
+        UpdateCoin();
+    }
+
     private void Awake()
     {
         if (_instance == null)

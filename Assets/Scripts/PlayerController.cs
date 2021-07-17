@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
         if (boosting)
         {
             gameManager.StopChargingBoost();
-            factor = gameManager.UseBoost(boostUnit * Time.fixedDeltaTime) ? boostFactor : factor;
+            factor = gameManager.UseBoost((boostUnit - gameManager.dashTimeBoost * 5) * Time.fixedDeltaTime) ? boostFactor : factor;
             // GameManager_.Instance.SoundPlayer.PlayClip("Dash", 0.5f);
         }
         else

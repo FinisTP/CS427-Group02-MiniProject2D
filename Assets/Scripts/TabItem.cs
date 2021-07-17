@@ -23,7 +23,7 @@ public class ItemClass
 public class TabItem : MonoBehaviour
 {
     public int itemId;
-    private int currentLevel = 1;
+    private int currentLevel = 0;
     public ItemClass[] itemProgression;
     public string description;
     public TMP_Text priceTag;
@@ -52,12 +52,14 @@ public class TabItem : MonoBehaviour
         GameManager_.Instance.SoundPlayer.PlayClip("Button");
         if (currentLevel < itemProgression.Length && GameManager_.Instance.Coin >= itemProgression[currentLevel].price)
         {
-            GameManager_.Instance.tracker.BoughtItemStates[itemId] = currentLevel;
+            
             GameManager_.Instance.AddCoin(-itemProgression[currentLevel].price);
+            currentLevel++;
             ModifyPlayer();
 
 
-            currentLevel++;
+            
+            GameManager_.Instance.tracker.BoughtItemStates[itemId] = currentLevel;
             ShopManager.Instance.ShowMessage(transactionMessage, 2);
             ShopManager.Instance.UpdateCoin();
             if (currentLevel < itemProgression.Length - 1)
@@ -79,19 +81,19 @@ public class TabItem : MonoBehaviour
         switch (itemType)
         {
             case ItemType.Combo:
-                ModifyCombo(itemProgression[currentLevel-1].effectLevel);
+                ModifyCombo(itemProgression[currentLevel].effectLevel);
                 break;
             case ItemType.Score:
-                ModifyScore(itemProgression[currentLevel-1].effectLevel);
+                ModifyScore(itemProgression[currentLevel].effectLevel);
                 break;
             case ItemType.Shield:
-                ModifyShield((int)itemProgression[currentLevel-1].effectLevel);
+                ModifyShield((int)itemProgression[currentLevel].effectLevel);
                 break;
             case ItemType.Dash:
-                ModifyDash(itemProgression[currentLevel-1].effectLevel);
+                ModifyDash(itemProgression[currentLevel].effectLevel);
                 break;
             case ItemType.Speed:
-                ModifySpeed(itemProgression[currentLevel-1].effectLevel);
+                ModifySpeed(itemProgression[currentLevel].effectLevel);
                 break;
 
         }
@@ -99,11 +101,11 @@ public class TabItem : MonoBehaviour
 
     public void UpdateLevelCube()
     {
-        for (int i = 0; i < currentLevel; ++i)
+        for (int i = 0; i <= currentLevel; ++i)
         {
             levelCubes[i].color = Color.white;
         }
-        for (int i = currentLevel; i < levelCubes.Length; ++i)
+        for (int i = currentLevel + 1; i < levelCubes.Length; ++i)
         {
             levelCubes[i].color = new Color(0, 0, 0, 0);
         }
