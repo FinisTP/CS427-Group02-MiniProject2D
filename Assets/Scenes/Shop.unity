@@ -2879,7 +2879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca80a50c9706c3b4085dc4dfecd4ef5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 0
+  itemId: 11
   Animation: {fileID: 22100000, guid: c72f61432813d7a45bc51f875e3e25c5, type: 2}
   price: 0
   priceTag: {fileID: 963080407}
@@ -3668,7 +3668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca80a50c9706c3b4085dc4dfecd4ef5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 0
+  itemId: 12
   Animation: {fileID: 22100000, guid: 1ff96fbbc119db54c8a88d313a1f0f73, type: 2}
   price: 1000
   priceTag: {fileID: 1429086837}
@@ -6652,28 +6652,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9a2f60995226d4fade6a2120f32c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 0
+  itemId: 4
   itemProgression:
+  - price: 50
+    effectLevel: 0.5
   - price: 100
     effectLevel: 1
+  - price: 150
+    effectLevel: 1.5
   - price: 200
     effectLevel: 2
+  - price: 250
+    effectLevel: 2.5
   - price: 300
     effectLevel: 3
+  - price: 350
+    effectLevel: 3.5
   - price: 400
     effectLevel: 4
+  - price: 450
+    effectLevel: 4.5
   - price: 500
     effectLevel: 5
-  - price: 600
-    effectLevel: 6
-  - price: 700
-    effectLevel: 7
-  - price: 800
-    effectLevel: 8
-  - price: 900
-    effectLevel: 9
-  - price: 1000
-    effectLevel: 10
   description: Increase overall combo span and luck
   priceTag: {fileID: 1697024139}
   transactionMessage: We can't let any of 'em escape!
@@ -9954,28 +9954,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9a2f60995226d4fade6a2120f32c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 0
+  itemId: 1
   itemProgression:
+  - price: 50
+    effectLevel: 0.5
   - price: 100
     effectLevel: 1
+  - price: 150
+    effectLevel: 1.5
   - price: 200
     effectLevel: 2
+  - price: 250
+    effectLevel: 2.5
   - price: 300
     effectLevel: 3
+  - price: 350
+    effectLevel: 3.5
   - price: 400
     effectLevel: 4
+  - price: 450
+    effectLevel: 4.5
   - price: 500
     effectLevel: 5
-  - price: 600
-    effectLevel: 6
-  - price: 700
-    effectLevel: 7
-  - price: 800
-    effectLevel: 8
-  - price: 900
-    effectLevel: 9
-  - price: 1000
-    effectLevel: 10
   description: Increase your normal movement speed
   priceTag: {fileID: 937420241}
   transactionMessage: Fast, faster and faster!
@@ -10449,28 +10449,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9a2f60995226d4fade6a2120f32c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 0
+  itemId: 3
   itemProgression:
+  - price: 50
+    effectLevel: 0.5
   - price: 100
     effectLevel: 1
+  - price: 150
+    effectLevel: 1.5
   - price: 200
     effectLevel: 2
+  - price: 250
+    effectLevel: 2.5
   - price: 300
     effectLevel: 3
+  - price: 350
+    effectLevel: 3.5
   - price: 400
     effectLevel: 4
+  - price: 450
+    effectLevel: 4.5
   - price: 500
     effectLevel: 5
-  - price: 600
-    effectLevel: 6
-  - price: 700
-    effectLevel: 7
-  - price: 800
-    effectLevel: 8
-  - price: 900
-    effectLevel: 9
-  - price: 1000
-    effectLevel: 10
   description: Increase your normal movement speed
   priceTag: {fileID: 330112746}
   transactionMessage: Nothing sates you more than greed!
@@ -12679,7 +12679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca80a50c9706c3b4085dc4dfecd4ef5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 0
+  itemId: 13
   Animation: {fileID: 22100000, guid: f12e26f78ed3d4c4bbb0b5c05b03904a, type: 2}
   price: 2000
   priceTag: {fileID: 293763441}
@@ -12752,28 +12752,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9a2f60995226d4fade6a2120f32c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 0
+  itemId: 2
   itemProgression:
+  - price: 50
+    effectLevel: 0.5
   - price: 100
     effectLevel: 1
+  - price: 150
+    effectLevel: 1.5
   - price: 200
     effectLevel: 2
+  - price: 250
+    effectLevel: 2.5
   - price: 300
     effectLevel: 3
+  - price: 350
+    effectLevel: 3.5
   - price: 400
     effectLevel: 4
+  - price: 450
+    effectLevel: 4.5
   - price: 500
     effectLevel: 5
-  - price: 600
-    effectLevel: 6
-  - price: 700
-    effectLevel: 7
-  - price: 800
-    effectLevel: 8
-  - price: 900
-    effectLevel: 9
-  - price: 1000
-    effectLevel: 10
   description: Increase dash duration and regeneration rate
   priceTag: {fileID: 1602943348}
   transactionMessage: As blazing as Pantheon!

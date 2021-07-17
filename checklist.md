@@ -6,10 +6,13 @@
 - [x] AI
 - [x] menu
 - [x] HUD? 
-- [x] demo
+- [ ] demo
 - [ ] clip quảng cáo
 - [ ] gameplay balance
-- [ ] webgl
+- [ ] report
+- [x] webgl
+- [x] android
+- [x] ios
 - [x] screen resolution adaptation
 - [x] storyline
 - [x] shopping

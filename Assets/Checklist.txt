@@ -15,5 +15,13 @@ Chắc bỏ qua luôn :)) - Cho di chuyển bằng cách bấm tự do trên and
 
 
 - Ghi credit chi tiết
-- Cân bằng lại độ khó game ở các màn 4-6
-- Cân bằng lại các upgrade trong game (hiện tại upgrade vài nấc thì game trở nên dễ quá)
+<> Cân bằng lại độ khó game ở các màn 4-6
+<> Cân bằng lại các upgrade trong game (hiện tại upgrade vài nấc thì game trở nên dễ quá)
+<> Chỉnh lại start game box
+- Cursor trên WebGL bị lỗi
+<> Mấy cái object rắn làm cản đường player, nên remove bớt
+<> Lúc grief xong game over thì bị unlimited dash
+<> sprite người trên thanh prey nhỏ quá
+<> Default res trên android rất mờ
+<> (bỏ qua) Text story đến dòng cuối cùng bị nhảy nhảy
+<> Chưa chỉnh itemId cho save

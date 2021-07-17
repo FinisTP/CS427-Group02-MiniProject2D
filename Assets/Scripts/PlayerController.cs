@@ -49,6 +49,9 @@ public class PlayerController : MonoBehaviour
         StartPosition = transform.position;
         joystick = GameObject.FindObjectOfType<FixedJoystick>();
         Vortex.SetActive(false);
+
+        if (Application.isMobilePlatform) Cursor.visible = false;
+
     }
 
     private void Update()
